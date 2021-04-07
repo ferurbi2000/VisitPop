@@ -15,6 +15,7 @@ namespace VisitPop.Domain.Constants
 
         public const int MAX_PHONE_LENGTH = 13;
         public const int MAX_DOC_ID_LENGTH = 13;
+        public const int MAX_ADDRESS_LENGTH = 150;
 
         public const int MAX_EMAIL_LENGTH = 254;
 

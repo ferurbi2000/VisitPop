@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VisitPop.Mobile.Views.Categories.CategoryDetailPage">
+
+    <ContentPage.Content>
+        <StackLayout Spacing="3" Padding="15">
+            <Label Text="Categoria" FontSize="Medium"/>
+            <Entry Text="{Binding Path = Category.Name, Mode=TwoWay}" FontSize="Medium"/>
+            <Label Text="Descripcion" FontSize="Medium"/>
+            <Entry Text="{Binding Path = Category.Description, Mode=TwoWay}" FontSize="Medium"/>
+            <StackLayout Orientation="Horizontal">
+                <!--<Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>-->
+                <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+
+    <!--<TableView Intent="Form" Margin="16,0">
+        <TableRoot>
+            <TableSection Title="Nombre">
+                <EntryCell Label="Nombres" Text="{Binding Path=Contact.Nombres}" />
+                <EntryCell Label="Apellidos" Text="{Binding Path=Contact.Apellidos}" />
+            </TableSection>
+            <TableSection Title="Contact">
+                <EntryCell Label="Cedula" Text="{Binding Path=Contact.DocIdentidad}" Keyboard="Text" />
+                <EntryCell Label="Telefono" Text="{Binding Path=Contact.Telefono1}" Keyboard="Telephone" />
+            </TableSection>
+            -->
+    <!--<TableSection Title="Other">
+                <SwitchCell Text="Add to Favorites" On="{Binding Path=Contact.IsFavorite}" />
+            </TableSection>-->
+    <!--
+            <TableSection>
+                <ViewCell>
+                    <Button Text="Save" Command="{Binding SaveCommand}" />
+                </ViewCell>
+            </TableSection>
+        </TableRoot>
+    </TableView>-->
+</ContentPage>

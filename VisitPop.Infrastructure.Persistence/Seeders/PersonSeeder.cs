@@ -13,7 +13,7 @@ namespace VisitPop.Infrastructure.Persistence.Seeders
             {
                 //TODO: Revisar aqui sin AutoFaker puede añadir nuevos registros en español en las tablas                
 
-                for (int i = 0; i < 100; i++)
+                for (int i = 0; i < 5; i++)
                 {
                     context.People.Add(new AutoFaker<Person>());
                 }

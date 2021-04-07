@@ -12,7 +12,7 @@ namespace VisitPop.Application.Dtos.Person
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
         public string DocIdentidad { get; set; }
-        //public string Telefono1 { get; set; }
+        public string Telefono1 { get; set; }
         //public string Telefono2 { get; set; }
         public string Email { get; set; }
         //public string Observacion { get; set; }

@@ -48,6 +48,16 @@ namespace VisitPop.WebApi
                 context.Database.EnsureCreated();
 
                 #region VisitPopDbContext Seeder Region - Do Not Delete
+                DepartamentoEmpleadoSeeder.SeedSampleDepartamentoEmpleadoData(app.ApplicationServices.GetService<VisitPopDbContext>());
+                EmpleadoSeeder.SeedSampleEmpleadoData(app.ApplicationServices.GetService<VisitPopDbContext>());
+                EmpresaSeeder.SeedEmpresaData(app.ApplicationServices.GetService<VisitPopDbContext>());
+                EstadoVisitaSeeder.SeedEstadoVisitaData(app.ApplicationServices.GetService<VisitPopDbContext>());
+                OficinaSeeder.SeedSampleOficinaData(app.ApplicationServices.GetService<VisitPopDbContext>());
+                VisitaSeeder.SeedSampleVisitaData(app.ApplicationServices.GetService<VisitPopDbContext>());
+                ObservacionSeeder.SeedSampleObservacionData(app.ApplicationServices.GetService<VisitPopDbContext>());
+                PuntoControlSeeder.SeedPuntoControlData(app.ApplicationServices.GetService<VisitPopDbContext>());
+
+                CategorySeeder.SeedSampleCategoryData(app.ApplicationServices.GetService<VisitPopDbContext>());
                 PersonSeeder.SeedSamplePersonData(app.ApplicationServices.GetService<VisitPopDbContext>());
                 #endregion
             }

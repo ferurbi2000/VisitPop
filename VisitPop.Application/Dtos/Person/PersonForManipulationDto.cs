@@ -5,6 +5,7 @@
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
         public string DocIdentidad { get; set; }
+        public string Telefono1 { get; set; }
 
         // add-on property marker - Do Not Delete This Comment
 

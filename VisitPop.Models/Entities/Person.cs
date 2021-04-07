@@ -1,8 +1,5 @@
 ﻿using Sieve.Attributes;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 using VisitPop.Domain.Common;
 using VisitPop.Domain.Constants;
 

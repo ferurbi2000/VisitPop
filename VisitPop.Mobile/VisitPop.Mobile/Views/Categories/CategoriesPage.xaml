@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VisitPop.Mobile.Views.Categories.CategoriesPage"
+             x:Name="categoriesPage"
+             Title="Categories">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddCategoryCommand}"/>
+        <ToolbarItem Text="Refresh" Command="{Binding LoadDataCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <ListView ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory, Mode=TwoWay}" 
+              HasUnevenRows="True" SeparatorColor="Gray" ItemSelected="OnCategorySelected">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ImageCell Text="{Binding FullName}" 
+                           Detail="{Binding Name}" DetailColor="Black" TextColor="Blue">
+                    <ImageCell.ContextActions>
+                        <!--<MenuItem Text="Call" IsDestructive="True" Command="{Binding Source={x:Reference contactsPage}, Path=ViewModel.CallContactCommand}" CommandParameter="{Binding .}"/>-->
+                        <MenuItem Text="Delete" IsDestructive="True" Command="{Binding Source={x:Reference categoriesPage}, Path=ViewModel.DeleteCategoryCommand}" CommandParameter="{Binding .}"/>
+                    </ImageCell.ContextActions>
+                </ImageCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>

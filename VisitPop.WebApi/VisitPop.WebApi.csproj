@@ -28,6 +28,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
+	<PropertyGroup>
+		<IncludeOpenAPIAnalyzers>true</IncludeOpenAPIAnalyzers>
+	</PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\VisitPop.Application\VisitPop.Application.csproj" />
     <ProjectReference Include="..\VisitPop.Infrastructure.Persistence\VisitPop.Infrastructure.Persistence.csproj" />
