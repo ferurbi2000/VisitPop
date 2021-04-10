@@ -27,6 +27,8 @@ namespace VisitPop.Infrastructure.Persistence.Contexts
         public DbSet<DepartamentoEmpleado> DepartamentoEmpleados { get; set; }
         public DbSet<Empleado> Empleados { get; set; }
         public DbSet<Visita> Visitas { get; set; }
+        public DbSet<TipoPersona> TipoPersonas { get; set; }
+        public DbSet<TipoVehiculo> TipoVehiculos { get; set; }
 
         public DbSet<PuntoControl> PuntoControles { get; set; }
 

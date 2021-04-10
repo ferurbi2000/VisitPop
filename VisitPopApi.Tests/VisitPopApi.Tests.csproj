@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="autobogus" Version="2.13.0" />
+    <PackageReference Include="bogus" Version="33.0.2" />
+    <PackageReference Include="coverlet.collector" Version="3.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="fluentassertions" Version="5.10.3" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="5.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.5" />
+    <PackageReference Include="Microsoft.Net.Test.sdk" Version="16.9.4" />
+    <PackageReference Include="Moq" Version="4.16.1" />
+    <PackageReference Include="Respawn" Version="4.0.0" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VisitPop.Application\VisitPop.Application.csproj" />
+    <ProjectReference Include="..\VisitPop.Infrastructure.Persistence\VisitPop.Infrastructure.Persistence.csproj" />
+    <ProjectReference Include="..\VisitPop.Infrastructure.Shared\VisitPop.Infrastructure.Shared.csproj" />
+    <ProjectReference Include="..\VisitPop.Models\VisitPop.Domain.csproj" />
+    <ProjectReference Include="..\VisitPop.WebApi\VisitPop.WebApi.csproj" />
+  </ItemGroup>
+
+</Project>

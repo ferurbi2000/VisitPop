@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sieve.Attributes;
+using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -11,6 +12,7 @@ namespace VisitPop.Domain.Common
     public abstract class AuditableEntity : IIdentityEntity, IAuditableEntity, IActivatableEntity, ISoftDeletable
     {
         [Key]
+        [Sieve(CanFilter = true, CanSort = true)]
         public int Id { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }

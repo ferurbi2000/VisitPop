@@ -15,6 +15,8 @@ using VisitPop.Application.Interfaces.EstadoVisita;
 using VisitPop.Application.Interfaces.Observacion;
 using VisitPop.Application.Interfaces.Oficina;
 using VisitPop.Application.Interfaces.PuntoControl;
+using VisitPop.Application.Interfaces.TipoPersona;
+using VisitPop.Application.Interfaces.TipoVehiculo;
 using VisitPop.Application.Interfaces.VisitPop;
 using VisitPop.Infrastructure.Persistence.Contexts;
 using VisitPop.Infrastructure.Persistence.Repositories;
@@ -34,7 +36,7 @@ namespace VisitPop.Infrastructure.Persistence
             else
             {
                 service.AddDbContext<VisitPopDbContext>(options =>
-                    options.UseSqlServer(
+                    options.UseSqlServer(                        
                         configuration.GetConnectionString("VisitPopDb"),
                         builder => builder.MigrationsAssembly(typeof(VisitPopDbContext).Assembly.FullName)));
             }
@@ -53,6 +55,8 @@ namespace VisitPop.Infrastructure.Persistence
             service.AddScoped<IOficinaRepository, OficinaRepository>();
             service.AddScoped<IObservacionRepository, ObservacionRepository>();
             service.AddScoped<IPuntoControlRepository, PuntoControlRepository>();
+            service.AddScoped<ITipoPersonaRepository, TipoPersonaRepository>();
+            service.AddScoped<ITipoVehiculoRepository, TipoVehiculoRepository>();
 
             #endregion
         }

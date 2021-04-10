@@ -11,10 +11,11 @@ using VisitPop.WebApi.Extensions;
 
 namespace VisitPop.WebApi
 {
-    public class StartupDevelopment
+    public class StartupTesting
     {
         public IConfiguration _config { get; }
-        public StartupDevelopment(IConfiguration configuration)
+
+        public StartupTesting(IConfiguration configuration)
         {
             _config = configuration;
         }
@@ -40,28 +41,11 @@ namespace VisitPop.WebApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseDeveloperExceptionPage();
-
             #region Entity Context Region - Do Not Delete
             using (var context = app.ApplicationServices.GetService<VisitPopDbContext>())
             {
                 context.Database.EnsureCreated();
-
-                #region VisitPopDbContext Seeder Region - Do Not Delete
-                DepartamentoEmpleadoSeeder.SeedSampleDepartamentoEmpleadoData(app.ApplicationServices.GetService<VisitPopDbContext>());
-                EmpleadoSeeder.SeedSampleEmpleadoData(app.ApplicationServices.GetService<VisitPopDbContext>());
-                EmpresaSeeder.SeedEmpresaData(app.ApplicationServices.GetService<VisitPopDbContext>());
-                EstadoVisitaSeeder.SeedEstadoVisitaData(app.ApplicationServices.GetService<VisitPopDbContext>());
-                OficinaSeeder.SeedSampleOficinaData(app.ApplicationServices.GetService<VisitPopDbContext>());
-                VisitaSeeder.SeedSampleVisitaData(app.ApplicationServices.GetService<VisitPopDbContext>());
-                ObservacionSeeder.SeedSampleObservacionData(app.ApplicationServices.GetService<VisitPopDbContext>());
-                PuntoControlSeeder.SeedPuntoControlData(app.ApplicationServices.GetService<VisitPopDbContext>());
-                TipoPersonaSeeder.TipoPersonaSampleData(app.ApplicationServices.GetService<VisitPopDbContext>());
-                TipoVehiculoSeeder.TipoVehiculoSampleData(app.ApplicationServices.GetService<VisitPopDbContext>());
-
-                CategorySeeder.SeedSampleCategoryData(app.ApplicationServices.GetService<VisitPopDbContext>());
-                PersonSeeder.SeedSamplePersonData(app.ApplicationServices.GetService<VisitPopDbContext>());
-                #endregion
+                
             }
             #endregion
 
@@ -71,6 +55,12 @@ namespace VisitPop.WebApi
             app.UseRouting();
 
             app.UseErrorHandlingMiddleware();
+
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //}            
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHealthChecks("/api/health");
