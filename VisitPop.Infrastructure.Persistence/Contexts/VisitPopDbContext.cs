@@ -15,22 +15,20 @@ namespace VisitPop.Infrastructure.Persistence.Contexts
         {
         }
 
-        #region DBSet Region - Do Not Delete
-        public DbSet<Person> People { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        
-        
+        #region DBSet Region - Do Not Delete        
         public DbSet<Empresa> Empresas { get; set; }
         public DbSet<EstadoVisita> EstadoVisitas { get; set; }
         public DbSet<Oficina> Oficinas { get; set; }
         public DbSet<Observacion> Observaciones { get; set; }
         public DbSet<DepartamentoEmpleado> DepartamentoEmpleados { get; set; }
         public DbSet<Empleado> Empleados { get; set; }
-        public DbSet<Visita> Visitas { get; set; }
         public DbSet<TipoPersona> TipoPersonas { get; set; }
         public DbSet<TipoVehiculo> TipoVehiculos { get; set; }
-
+        public DbSet<TipoVisita> TipoVisitas { get; set; }
         public DbSet<PuntoControl> PuntoControles { get; set; }
+        public DbSet<Persona> Personas { get; set; }
+        public DbSet<Visita> Visitas { get; set; }
+        public DbSet<VisitaPersona> VisitaPersonas { get; set; }
 
         #endregion
     }

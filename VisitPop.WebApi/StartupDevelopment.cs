@@ -52,15 +52,17 @@ namespace VisitPop.WebApi
                 EmpleadoSeeder.SeedSampleEmpleadoData(app.ApplicationServices.GetService<VisitPopDbContext>());
                 EmpresaSeeder.SeedEmpresaData(app.ApplicationServices.GetService<VisitPopDbContext>());
                 EstadoVisitaSeeder.SeedEstadoVisitaData(app.ApplicationServices.GetService<VisitPopDbContext>());
-                OficinaSeeder.SeedSampleOficinaData(app.ApplicationServices.GetService<VisitPopDbContext>());
-                VisitaSeeder.SeedSampleVisitaData(app.ApplicationServices.GetService<VisitPopDbContext>());
+                OficinaSeeder.SeedSampleOficinaData(app.ApplicationServices.GetService<VisitPopDbContext>());                
                 ObservacionSeeder.SeedSampleObservacionData(app.ApplicationServices.GetService<VisitPopDbContext>());
                 PuntoControlSeeder.SeedPuntoControlData(app.ApplicationServices.GetService<VisitPopDbContext>());
                 TipoPersonaSeeder.TipoPersonaSampleData(app.ApplicationServices.GetService<VisitPopDbContext>());
                 TipoVehiculoSeeder.TipoVehiculoSampleData(app.ApplicationServices.GetService<VisitPopDbContext>());
+                TipoVisitaSeeder.TipoVisitaSampleData(app.ApplicationServices.GetService<VisitPopDbContext>());
+                PersonaSeeder.PersonaSampleData(app.ApplicationServices.GetService<VisitPopDbContext>());
 
-                CategorySeeder.SeedSampleCategoryData(app.ApplicationServices.GetService<VisitPopDbContext>());
-                PersonSeeder.SeedSamplePersonData(app.ApplicationServices.GetService<VisitPopDbContext>());
+                VisitaSeeder.SeedSampleVisitaData(app.ApplicationServices.GetService<VisitPopDbContext>());
+                VisitaPersonaSeeder.VisitPersonaSampleData(app.ApplicationServices.GetService<VisitPopDbContext>());
+
                 #endregion
             }
             #endregion

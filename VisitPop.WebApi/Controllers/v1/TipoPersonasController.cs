@@ -176,7 +176,6 @@ namespace VisitPop.WebApi.Controllers.v1
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesDefaultResponseType]
-
         public async Task<IActionResult> PartiallyUpdateTipoPersona(int id, JsonPatchDocument<TipoPersonaForUpdatedDto> pathDoc)
         {
             if (pathDoc == null)

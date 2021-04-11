@@ -1,14 +1,65 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Sieve.Attributes;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using VisitPop.Domain.Common;
+using VisitPop.Domain.Constants;
 
 namespace VisitPop.Domain.Entities
 {
-    public class Visita: AuditableEntity
+    [Table("Visita")]
+    public class Visita : AuditableEntity
     {
+        [Required]
+        [Sieve(CanFilter = true, CanSort = true)]
+        [StringLength(VisitEntityConstants.MAX_NOTES_LENGTH)]
         public string Motivo { get; set; }
+
+        [Required]
+        [Sieve(CanFilter = true, CanSort = true)]
+        public int TipoVisitaId { get; set; }
+
+        [Sieve(CanFilter = true, CanSort = true)]
+        [StringLength(VisitEntityConstants.MAX_NAMES_LENGTH)]
+        public string Empresa { get; set; }
+
+        [Required]
+        [Sieve(CanFilter = true, CanSort = true)]
+        public int EmpleadoId { get; set; }
+
+        [Required]
+        [Sieve(CanFilter = true, CanSort = true)]
+        public int OficinaId { get; set; }
+
+        [Sieve(CanFilter = true, CanSort = true)]
+        public bool IsCitaPrevia { get; set; }
+
+        [Sieve(CanFilter = true, CanSort = true)]
+        public DateTime? FechaCita { get; set; }
+
+        [Required]
+        [Sieve(CanFilter = true, CanSort = true)]
+        public int PuntoControlId { get; set; }
+
+        [Required]
+        [Sieve(CanFilter = true, CanSort = true)]
+        public int EstadoVisitaId { get; set; }
+
+        [ForeignKey("TipoVisitaId")]
+        public TipoVisita TipoVisita { get; set; }
+
+        [ForeignKey("EmpleadoId")]
+        public Empleado Empleado { get; set; }
+
+        [ForeignKey("OficinaId")]
+        public Oficina Oficina { get; set; }
+
+        [ForeignKey("PuntoControlId")]
+        public PuntoControl PuntoControl { get; set; }
+
+        [ForeignKey("EstadoVisitaId")]
+        public EstadoVisita EstadoVisita { get; set; }
+
+        // add-on property marker - Do Not Delete This Comment
     }
 }
