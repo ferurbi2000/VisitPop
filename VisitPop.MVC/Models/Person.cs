@@ -17,14 +17,14 @@ namespace VisitPop.MVC.Models
         [JsonProperty("apellidos")]
         public string Apellidos { get; set; }
 
-        [JsonProperty("docIdentidad")]
-        public string DocIdentidad { get; set; }
+        [JsonProperty("Identidad")]
+        public string Identidad { get; set; }
 
         //[JsonProperty("email")]
         //public string Email { get; set; }
 
-        [JsonProperty("telefono1")]
-        public string Telefono1 { get; set; }
+        [JsonProperty("telefono")]
+        public string Telefono { get; set; }
 
         //[JsonProperty("isActive")]
         //public bool IsActive { get; set; }

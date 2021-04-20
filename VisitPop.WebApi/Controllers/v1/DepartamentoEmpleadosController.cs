@@ -41,15 +41,15 @@ namespace VisitPop.WebApi.Controllers.v1
 
             var paginationMetadata = new
             {
-                totalCount = DepartamentoEmpleadosFromRepo.TotalCount,
-                pageSize = DepartamentoEmpleadosFromRepo.PageSize,
-                currentPageSize = DepartamentoEmpleadosFromRepo.CurrentPageSize,
-                currentStartIndex = DepartamentoEmpleadosFromRepo.CurrentStartIndex,
-                currentEndIndex = DepartamentoEmpleadosFromRepo.CurrentEndIndex,
-                pageNumber = DepartamentoEmpleadosFromRepo.PageNumber,
-                totalPages = DepartamentoEmpleadosFromRepo.TotalPages,
-                hasPrevious = DepartamentoEmpleadosFromRepo.HasPrevious,
-                hasNext = DepartamentoEmpleadosFromRepo.HasNext
+                totalCount = DepartamentoEmpleadosFromRepo.MetaData.TotalCount,
+                pageSize = DepartamentoEmpleadosFromRepo.MetaData.PageSize,
+                currentPageSize = DepartamentoEmpleadosFromRepo.MetaData.CurrentPageSize,
+                currentStartIndex = DepartamentoEmpleadosFromRepo.MetaData.CurrentStartIndex,
+                currentEndIndex = DepartamentoEmpleadosFromRepo.MetaData.CurrentEndIndex,
+                pageNumber = DepartamentoEmpleadosFromRepo.MetaData.PageNumber,
+                totalPages = DepartamentoEmpleadosFromRepo.MetaData.TotalPages,
+                hasPrevious = DepartamentoEmpleadosFromRepo.MetaData.HasPrevious,
+                hasNext = DepartamentoEmpleadosFromRepo.MetaData.HasNext
             };
 
             Response.Headers.Add("X-Pagination",
@@ -80,6 +80,7 @@ namespace VisitPop.WebApi.Controllers.v1
 
             return Ok(response);
         }
+
 
         [Consumes("application/json")]
         [Produces("application/json")]

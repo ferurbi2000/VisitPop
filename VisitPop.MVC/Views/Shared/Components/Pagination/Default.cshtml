@@ -1,0 +1,109 @@
+﻿@model PaginationViewModel
+
+<div class="col-md-6 align-content-center">
+
+    @if (@Model.List.CurrentPageSize > 0)
+    {
+        <p>Showing @Model.List.CurrentStartIndex to @Model.List.CurrentEndIndex of @Model.List.TotalCount Records</p>
+    }
+    else
+    {
+        <p>No Records found</p>
+    }
+
+</div>
+
+<div class="col-md-6">
+    <nav class="d-lg-flex justify-content-lg-end">
+        <ul class="pagination shadow-sm">
+            @if (Model.List.HasPrevious)
+            {
+                <li class="page-item">
+                    <a class="page-link" 
+                       asp-route-page="@(Model.List.PageNumber - 1)" 
+                       asp-route-pagesize="@(Model.List.PageSize)" 
+                       asp-route-sortOrder="@(Model.SortOrder)"
+                       asp-route-filters="@(Model.Filters)"                       
+                       tabindex="-1" title="previous">
+                        <span>«</span>
+                    </a>
+                </li>
+            }
+
+            @{
+                //Nuevo
+                int startPage = 1;
+                int endPage = 1;
+                int LinksPerPage = 5;
+
+                if (Model.List.TotalPages > 1)
+                {
+                    if (Model.List.TotalPages <= LinksPerPage)
+                    {
+                        startPage = 1;
+                        endPage = Model.List.TotalPages;
+                    }
+                    else
+                    {
+                        if (Model.List.PageNumber + LinksPerPage - 1 > Model.List.TotalPages)
+                        {
+                            startPage = Model.List.PageNumber - ((Model.List.PageNumber + LinksPerPage - 1)
+                                - Model.List.TotalPages);
+                            endPage = (Model.List.PageNumber + LinksPerPage - 1) -
+                                ((Model.List.PageNumber + LinksPerPage - 1) - Model.List.TotalPages);
+                        }
+                        else
+                        {
+                            if (LinksPerPage != 2)
+                            {
+                                startPage = Model.List.PageNumber - (LinksPerPage / 2);
+                                if (startPage < 1)
+                                {
+                                    startPage = 1;
+                                }
+                                endPage = startPage + LinksPerPage - 1;
+                            }
+                            else
+                            {
+                                startPage = Model.List.PageNumber;
+                                endPage = Model.List.PageNumber + LinksPerPage - 1;
+                            }
+                        }
+                    }
+                }
+
+                for (var i = startPage; i <= endPage; i++)
+                {
+                    <li class="page-item @(i== Model.List.PageNumber ? "active" : "")">
+                        <a asp-route-page="@i" 
+                           asp-route-pagesize="@(Model.List.PageSize)" 
+                           asp-route-sortOrder="@(Model.SortOrder)"
+                           asp-route-filters="@(Model.Filters)"                           
+                           class="page-link">@i</a>
+                    </li>
+                }
+            }
+
+            @*@for (var i = 1; i <= Model.List.TotalPages; i++)
+                {
+                    <li class="page-item @(i== Model.List.PageNumber ? "active" : "")">
+                        <a asp-route-page="@i" class="page-link">@i</a>
+                    </li>
+                }*@
+
+            @if (Model.List.HasNext)
+            {
+                <li class="page-item">
+                    <a class="page-link" 
+                       asp-route-page="@(Model.List.PageNumber+1)" 
+                       asp-route-pagesize="@(Model.List.PageSize)" 
+                       asp-route-sortOrder="@(Model.SortOrder)"
+                       asp-route-filters="@(Model.Filters)"                       
+                       title="next">
+                        <span>»</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>

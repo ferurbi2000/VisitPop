@@ -12,7 +12,7 @@
         DepartamentoEmpleado GetDepartamentoEmpleado(int DepartamentoEmpleadoId);
         Task AddDepartamentoEmpleado(DepartamentoEmpleado DepartamentoEmpleado);
         void DeleteDepartamentoEmpleado(DepartamentoEmpleado DepartamentoEmpleado);
-        void UpdateDepartamentoEmpleado(DepartamentoEmpleado DepartamentoEmpleado);
+        void UpdateDepartamentoEmpleado(DepartamentoEmpleado DepartamentoEmpleado);        
         bool Save();
         Task<bool> SaveAsync();
     }

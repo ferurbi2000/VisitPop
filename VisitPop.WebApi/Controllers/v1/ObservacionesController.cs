@@ -41,15 +41,15 @@ namespace VisitPop.WebApi.Controllers.v1
 
             var paginationMetadata = new
             {
-                totalCount = observacionsFromRepo.TotalCount,
-                pageSize = observacionsFromRepo.PageSize,
-                currentPageSize = observacionsFromRepo.CurrentPageSize,
-                currentStartIndex = observacionsFromRepo.CurrentStartIndex,
-                currentEndIndex = observacionsFromRepo.CurrentEndIndex,
-                pageNumber = observacionsFromRepo.PageNumber,
-                totalPages = observacionsFromRepo.TotalPages,
-                hasPrevious = observacionsFromRepo.HasPrevious,
-                hasNext = observacionsFromRepo.HasNext
+                totalCount = observacionsFromRepo.MetaData.TotalCount,
+                pageSize = observacionsFromRepo.MetaData.PageSize,
+                currentPageSize = observacionsFromRepo.MetaData.CurrentPageSize,
+                currentStartIndex = observacionsFromRepo.MetaData.CurrentStartIndex,
+                currentEndIndex = observacionsFromRepo.MetaData.CurrentEndIndex,
+                pageNumber = observacionsFromRepo.MetaData.PageNumber,
+                totalPages = observacionsFromRepo.MetaData.TotalPages,
+                hasPrevious = observacionsFromRepo.MetaData.HasPrevious,
+                hasNext = observacionsFromRepo.MetaData.HasNext
             };
 
             Response.Headers.Add("X-Pagination",

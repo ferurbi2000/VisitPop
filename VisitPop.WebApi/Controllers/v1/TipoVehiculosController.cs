@@ -40,15 +40,15 @@ namespace VisitPop.WebApi.Controllers.v1
 
             var paginationMetadata = new
             {
-                totalCount = tipoVehiculosFromRepo.TotalCount,
-                pageSize = tipoVehiculosFromRepo.PageSize,
-                currentPageSize = tipoVehiculosFromRepo.CurrentPageSize,
-                currentStartIndex = tipoVehiculosFromRepo.CurrentStartIndex,
-                currentEndIndex = tipoVehiculosFromRepo.CurrentEndIndex,
-                pageNumber = tipoVehiculosFromRepo.PageNumber,
-                totalPages = tipoVehiculosFromRepo.TotalPages,
-                hasPrevious = tipoVehiculosFromRepo.HasPrevious,
-                hasNext = tipoVehiculosFromRepo.HasNext
+                totalCount = tipoVehiculosFromRepo.MetaData.TotalCount,
+                pageSize = tipoVehiculosFromRepo.MetaData.PageSize,
+                currentPageSize = tipoVehiculosFromRepo.MetaData.CurrentPageSize,
+                currentStartIndex = tipoVehiculosFromRepo.MetaData.CurrentStartIndex,
+                currentEndIndex = tipoVehiculosFromRepo.MetaData.CurrentEndIndex,
+                pageNumber = tipoVehiculosFromRepo.MetaData.PageNumber,
+                totalPages = tipoVehiculosFromRepo.MetaData.TotalPages,
+                hasPrevious = tipoVehiculosFromRepo.MetaData.HasPrevious,
+                hasNext = tipoVehiculosFromRepo.MetaData.HasNext
             };
 
             Response.Headers.Add("X-Pagination",

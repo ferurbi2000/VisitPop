@@ -49,6 +49,7 @@ namespace VisitPopApi.Tests
                     var db = scopedServices.GetRequiredService<VisitPopDbContext>();
 
                     // Ensure the database is created. In this case we all ready created in StartupTesting Class of the Api Project
+                    //db.Database.EnsureDeleted();
                     //db.Database.EnsureCreated();                    
 
                     try

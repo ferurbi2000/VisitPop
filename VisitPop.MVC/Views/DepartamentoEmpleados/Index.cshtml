@@ -1,0 +1,175 @@
+﻿@model PagingResponse<DepartamentoEmpleadoDto>
+@{
+    ViewData["Title"] = "Index";
+
+    var selectIndex = (int)ViewBag.pageSize;
+    var filter = ViewBag.filter;
+
+}
+
+
+<div class="d-sm-flex justify-content-between align-items-center mb-4">
+
+    <h3 class="text-dark mb-0">Departamento Empleados</h3>
+
+    <a asp-action="Edit" class="btn btn-primary btn-sm d-none d-sm-inline-block shadow-sm">
+        <i class="fas fa-plus fa-sm text-white-50"></i>
+        Add Departamento
+    </a>
+
+</div>
+
+<div class="card shadow">
+    <div class="card-header py-3">
+        <p class="text-primary m-0 font-weight-bold">Departamentos Info</p>
+    </div>
+    <div class="card-body">
+        <form method="get">
+            <div class="row">
+
+                <div class="col-md-6 text-nowrap">
+                    <div>
+                        @*<form method="get">*@
+                        <label>
+                            Show
+                            <select name="pageSize" asp-for="@Model.Metadata.PageSize" onchange="javascript:this.form.submit()"
+                                    class="form-control form-control-sm custom-select custom-select-sm">
+                                <option value="10" selected>10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+
+                        </label>
+                        @*</form>*@
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="text-md-right">
+                        @*<form method="get">*@
+                        <label>
+                            <input name="filters" asp-for="@filter"
+                                   class="form-control form-control-sm" type="search"
+                                   placeholder="Search for ..."
+                                   onchange="javascript:this.form.submit()" />
+                        </label>
+                        @*<label>
+                                <button class="btn btn-sm bg-primary text-white d-none d-sm-inline-block" onclick="javascript:this.form.submit()">
+                                        <i class="fas fa-search"></i>
+
+                                    </button>
+                            </label>*@
+                        @*</form>*@
+                    </div>
+                </div>
+
+            </div>
+        </form>
+
+        <div class="table-responsive table mt-2">
+            <table class="table table-sm my-0">
+                <thead>
+                    <tr>
+                        <th>
+                            <a asp-action="Index"
+                               asp-route-pagesize="@Model.Metadata.PageSize"
+                               asp-route-sortOrder="@ViewData["IdSortParm"]"
+                               asp-route-filters="@filter">
+                                ID
+                            </a>
+                        </th>
+                        <th>
+                            <a asp-action="Index"
+                               asp-route-pagesize="@Model.Metadata.PageSize"
+                               asp-route-sortOrder="@ViewData["NombreSortParm"]"
+                               asp-route-filters="@filter">
+                                Nombre
+                            </a>
+                        </th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var p in Model.Items)
+                    {
+                        <tr>
+                            <td>@p.Id</td>
+                            <td>@p.Nombre</td>
+                            <td>
+                                @*<form asp-action="Delete">*@
+                                @*<a class="btn btn-sm btn-outline-primary" asp-action="Edit" asp-route-id="@p.Id">Edit</a>
+                                    <button type="submit" class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@p.Id">Delete</button>*@
+
+                                <div class="dropdown no-arrow">
+                                    <button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-toggle="dropdown">
+                                        <i class="fas fa-ellipsis-v text-gray-400"></i>
+                                    </button>
+                                    <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in">
+                                        <p class="text-left dropdown-header">Acciones:</p>
+                                        <a class="dropdown-item" asp-action="Edit" asp-route-id="@p.Id">                                            
+                                            Edit
+                                        </a>
+                                        <a class="dropdown-item" asp-action="Delete" asp-route-id="@p.Id">Delete</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" asp-action="Delete" asp-route-id="@p.Id">Other</a>
+                                    </div>
+                                </div>
+                                @*</form>*@
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot></tfoot>
+            </table>
+        </div>
+
+        <div class="row">
+
+            <vc:pagination values="@Model.Metadata" filters="@Model.Filters" sort-order="@Model.SortOrder" />
+
+        </div>
+    </div>
+</div>
+
+
+@*<div class="row">
+        <table class="table caption-top table-sm table-striped table-bordered">
+            <caption>Lista of Departamentos</caption>
+            <thead class="table-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model.Items)
+                {
+                    <tr>
+                        <td>@p.Id</td>
+                        <td>@p.Nombre</td>
+                        <td>
+                            <form asp-action="Delete">
+                                <a class="btn btn-sm btn-outline-primary" asp-action="Edit" asp-route-id="@p.Id">Edit</a>
+                                <button type="submit" class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@p.Id">Delete</button>
+                            </form>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>*@
+
+@*<div page-model="@Model.Metadata" page-class="btn border mt-3" page-classes-enabled="true"
+         page-class-links="text-center" page-class-normal="btn btn-light" page-class-selected="btn btn-dark  active"
+         class="text-center">
+    </div>*@
+
+
+
+
+
+

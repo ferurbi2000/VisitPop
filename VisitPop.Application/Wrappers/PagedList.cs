@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 
 namespace VisitPop.Application.Wrappers
 {
@@ -10,28 +10,22 @@ namespace VisitPop.Application.Wrappers
     /// Clase Generica para incorporar funcionalidad de paginado en las Query
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class PagedList<T>: List<T>
+    public class PagedList<T> : List<T>
     {
-        public int PageNumber { get; private set; }
-        public int TotalPages { get; private set; }
-        public int PageSize { get; private set; }
-        public int CurrentPageSize { get; private set; }
-        public int CurrentStartIndex { get; set; }
-        public int CurrentEndIndex { get; set; }
-        public int TotalCount { get; private set; }
 
-        public bool HasPrevious => PageNumber > 1;
-        public bool HasNext => PageNumber < TotalPages;
+        public MetaData MetaData { get; set; }
 
         public PagedList(List<T> items, int count, int pageNumber, int pageSize)
         {
-            TotalCount = count;
-            PageSize = pageSize;
-            PageNumber = pageNumber;
-            CurrentPageSize = items.Count;
-            CurrentStartIndex = count == 0 ? 0 : (pageNumber * CurrentPageSize) - CurrentPageSize + 1;
-            CurrentEndIndex = count == 0 ? 0 : CurrentStartIndex + CurrentPageSize - 1;
-            TotalPages = (int)Math.Ceiling(count / (double)pageSize);
+            MetaData = new MetaData
+            {
+                TotalCount = count,
+                PageSize = pageSize,
+                PageNumber = pageNumber,
+                CurrentPageSize = items.Count,
+                TotalPages = (int)Math.Ceiling(count / (double)pageSize),
+
+            };
 
             AddRange(items);
         }

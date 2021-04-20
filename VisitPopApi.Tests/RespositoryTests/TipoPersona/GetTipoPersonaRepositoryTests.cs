@@ -14,7 +14,7 @@ namespace VisitPopApi.Tests.RespositoryTests.TipoPersona
 {
     [Collection("Sequential")]
     public class GetTipoPersonaRepositoryTests
-    {        
+    {
         [Fact]
         public void GetTipoPersona_ParamatersMatchExpectedValues()
         {
@@ -86,9 +86,12 @@ namespace VisitPopApi.Tests.RespositoryTests.TipoPersona
                 .Options;
             var sieveOptios = Options.Create(new SieveOptions());
 
-            var fakeTipoPeronaOne = new FakeTipoPersona { }.Generate();
-            var fakeTipoPeronaTwo = new FakeTipoPersona { }.Generate();
-            var fakeTipoPeronaThree = new FakeTipoPersona { }.Generate();
+            var fakeTipoPeronaOne = new FakeTipoPersona { }.Ignore(t => t.Id).Generate();
+            fakeTipoPeronaOne.Id = 1;
+            var fakeTipoPeronaTwo = new FakeTipoPersona { }.Ignore(t => t.Id).Generate();
+            fakeTipoPeronaTwo.Id = 2;
+            var fakeTipoPeronaThree = new FakeTipoPersona { }.Ignore(t => t.Id).Generate();
+            fakeTipoPeronaThree.Id = 3;
 
             //  Act
             using (var context = new VisitPopDbContext(dbOptions))
@@ -122,9 +125,12 @@ namespace VisitPopApi.Tests.RespositoryTests.TipoPersona
                 .Options;
             var sieveOptions = Options.Create(new SieveOptions());
 
-            var fakeTipoPersonaOne = new FakeTipoPersona { }.Generate();
-            var fakeTipoPersonaTwo = new FakeTipoPersona { }.Generate();
-            var fakeTipoPersonaThree = new FakeTipoPersona { }.Generate();
+            var fakeTipoPersonaOne = new FakeTipoPersona { }.Ignore(t => t.Id).Generate();
+            fakeTipoPersonaOne.Id = 1;
+            var fakeTipoPersonaTwo = new FakeTipoPersona { }.Ignore(t => t.Id).Generate();
+            fakeTipoPersonaTwo.Id = 2;
+            var fakeTipoPersonaThree = new FakeTipoPersona { }.Ignore(t => t.Id).Generate();
+            fakeTipoPersonaThree.Id = 3;
 
             //  Act
             using (var context = new VisitPopDbContext(dbOptions))

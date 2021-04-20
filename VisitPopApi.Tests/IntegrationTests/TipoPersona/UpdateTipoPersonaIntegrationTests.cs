@@ -43,7 +43,7 @@ namespace VisitPopApi.Tests.IntegrationTests.TipoPersona
                 var context = scope.ServiceProvider.GetRequiredService<VisitPopDbContext>();
                 context.Database.EnsureCreated();
 
-                context.TipoPersonas.RemoveRange(context.TipoPersonas);
+                //context.TipoPersonas.RemoveRange(context.TipoPersonas);
                 context.TipoPersonas.AddRange(fakeTipoPersonaOne);
                 context.SaveChanges();
             }

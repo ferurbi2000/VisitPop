@@ -15,7 +15,7 @@ namespace VisitPop.MVC.Controllers
             List<Person> personList = new List<Person>();
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.GetAsync("https://localhost:5001/api/People"))
+                using (var response = await httpClient.GetAsync("https://localhost:5001/api/Personas"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     personList = JsonConvert.DeserializeObject<PageListPerson>(apiResponse).People;
@@ -32,7 +32,7 @@ namespace VisitPop.MVC.Controllers
                 Person person = new Person();
                 using (var httpClient = new HttpClient())
                 {
-                    using (var response = await httpClient.GetAsync("https://localhost:5001/api/People/" + id))
+                    using (var response = await httpClient.GetAsync("https://localhost:5001/api/Personas/" + id))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         person = JsonConvert.DeserializeObject<PagePerson>(apiResponse).Person;
@@ -56,7 +56,7 @@ namespace VisitPop.MVC.Controllers
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(person), Encoding.UTF8, "application/json");
                     
-                    using (var response = await httpClient.PostAsync("https://localhost:5001/api/People", content))
+                    using (var response = await httpClient.PostAsync("https://localhost:5001/api/Personas", content))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         receivedPerson = JsonConvert.DeserializeObject<PagePerson>(apiResponse).Person;
@@ -70,7 +70,7 @@ namespace VisitPop.MVC.Controllers
                     
                     StringContent content = new StringContent(JsonConvert.SerializeObject(person), Encoding.UTF8, "application/json");                                        
 
-                    using (var response = await httpClient.PutAsync("https://localhost:5001/api/People/" + person.Id, content))
+                    using (var response = await httpClient.PutAsync("https://localhost:5001/api/Personas/" + person.Id, content))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         receivedPerson = JsonConvert.DeserializeObject<Person>(apiResponse);
@@ -87,7 +87,7 @@ namespace VisitPop.MVC.Controllers
         {
             using (var httpClient = new HttpClient())
             {
-                using (var response = await httpClient.DeleteAsync("https://localhost:5001/api/People/" + id))
+                using (var response = await httpClient.DeleteAsync("https://localhost:5001/api/Personas/" + id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                 }
