@@ -1,7 +1,7 @@
 # VisitPop
 > A project for manage visit on any company, wich handle visitors, office, departments, persons.
 
-![Test Image 1](https://github.com/ferurbi2000/VisitPop/blob/master/VisitPop.MVC/wwwroot/assets/img/dogs/image2.jpeg)
+![Test Image 1](https://github.com/ferurbi2000/VisitPop/blob/master/VisitPop.MVC/wwwroot/assets/img/portal/visitPop.PNG)
 
 ## Table of Contents
 - [x] Important Links
