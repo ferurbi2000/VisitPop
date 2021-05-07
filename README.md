@@ -1,6 +1,8 @@
 # VisitPop
 > A project for manage visit on any company, wich handle visitors, office, departments, persons.
 
+![Test Image 1](visitPop.png)
+<img align="left" width="100" height="100" src="http://www.fillmurray.com/100/100">
 
 ## Table of Contents
 - [x] Important Links
