@@ -30,13 +30,13 @@ namespace VisitPop.Domain.Entities
 
         [Required]
         [Sieve(CanFilter = true, CanSort = true)]
-        public int DepartamentoEmpleadoId { get; set; }
+        public int EmployeeDepartmentId { get; set; }
 
         [StringLength(VisitEntityConstants.MAX_EMAIL_LENGTH)]
         [Sieve(CanFilter = true, CanSort = true)]
         public string Email { get; set; }
 
-        [ForeignKey("DepartamentoEmpleadoId")]
-        public DepartamentoEmpleado DepartamentoEmpleado { get; set; }
+        [ForeignKey("EmployeeDepartmentId")]
+        public EmployeeDepartment EmployeeDepartments { get; set; }
     }
 }

@@ -1,0 +1,130 @@
+﻿@model PagingResponse<EmployeeDepartmentDto>
+
+@{
+    ViewData["Title"] = "Employee Departments";
+
+    var selectIndex = (int)ViewBag.pageSize;
+    var filter = ViewBag.filter;
+}
+
+@if (TempData["message"] != null)
+{
+    <vc:toaster message=@TempData["message"] , toaster-type="@((ToasterType)TempData["toasterType"])" />
+}
+
+<div class="d-sm-flex justify-content-between align-items-center mb-4">
+
+    <h3 class="text-dark mb-0">@ViewData["Title"]</h3>
+
+    <a id="btnAdd" asp-action="Create" class="btn btn-primary btn-sm d-none d-sm-inline-block shadow-sm">
+        <i class="fas fa-plus fa-sm text-white-50"></i>
+        Add Department
+    </a>
+
+</div>
+
+<div class="card shadow">
+
+    <div class="card-header py-3">
+
+        <form method="get">
+            <div class="row">
+                <vc:filters-and-page-size page-size="@Model.Metadata.PageSize" filter="@filter" />
+            </div>
+        </form>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="row">
+            <vc:pagination values="@Model.Metadata" filters="@Model.Filters" sort-order="@Model.SortOrder" />
+        </div>
+
+        <div class="table table mt-2">
+            <table class="table table-responsive-md my-0">
+                <thead>
+                    <tr>
+                        <th>
+                            <a asp-action="Index"
+                               asp-route-pagesize="@Model.Metadata.PageSize"
+                               asp-route-sortOrder="@ViewData["IdSortParm"]"
+                               asp-route-filters="@filter">
+                                ID
+                                @if (Model.SortOrder.Split("-").Contains("Id"))
+                                {
+                                    @if (ViewData["IdSortParm"].ToString().Contains("-"))
+                                    {
+                                        <i class="fas fa-sort-amount-up fa-sm"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="fas fa-sort-amount-down fa-sm"></i>
+                                    }
+                                }
+                            </a>
+                        </th>
+                        <th>
+                            <a asp-action="Index"
+                               asp-route-pagesize="@Model.Metadata.PageSize"
+                               asp-route-sortOrder="@ViewData["NameSortParm"]"
+                               asp-route-filters="@filter">
+                                Name
+                                @if (Model.SortOrder.Split("-").Contains("Name"))
+                                {
+                                    @if (ViewData["NameSortParm"].ToString().Contains("-"))
+                                    {
+                                        <i class="fas fa-sort-amount-up fa-sm"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="fas fa-sort-amount-down fa-sm"></i>
+                                    }
+                                }
+                            </a>
+                        </th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var p in Model.Items)
+                    {
+                        <tr>
+                            <td>@p.Id</td>
+                            <td>@p.Name</td>
+                            <td>
+                                <div class="dropdown no-arrow">
+                                    <button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-toggle="dropdown">
+                                        <i class="fas fa-ellipsis-v text-gray-400"></i>
+                                    </button>
+                                    <div class="dropdown-menu shadow dropdown-menu-left animated--fade-in">
+                                        <p class="text-left dropdown-header">Actions:</p>
+                                        <a class="dropdown-item" asp-action="Edit" asp-route-id="@p.Id">
+                                            <i class="fas fa-pen fa-sm fa-fw me-2 text-gray-500"></i>
+                                            Edit
+                                        </a>
+                                        <a class="dropdown-item" asp-action="Delete" asp-route-id="@p.Id">
+                                            <i class="fas fa-trash fa-sm fa-fw me-2 text-danger"></i>
+                                            Delete
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" asp-action="Details" asp-route-id="@p.Id">
+                                            <i class="far fa-list-alt fa-sm fa-fw me-2 text-gray-500"></i>
+                                            Details
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot></tfoot>
+            </table>
+        </div>
+
+        <div class="row">
+            <vc:pagination values="@Model.Metadata" filters="@Model.Filters" sort-order="@Model.SortOrder" />
+        </div>
+
+    </div>
+</div>

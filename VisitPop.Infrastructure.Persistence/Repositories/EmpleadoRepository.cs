@@ -35,7 +35,7 @@ namespace VisitPop.Infrastructure.Persistence.Repositories
 
             // TODO: AsNoTracking() should increase performance, but will break the sort tests. need to investigate
             var collection = _context.Empleados
-                .Include(e => e.DepartamentoEmpleado)
+                .Include(e => e.EmployeeDepartments)
                 as IQueryable<Empleado>;
 
             var sieveModel = new SieveModel
@@ -55,7 +55,7 @@ namespace VisitPop.Infrastructure.Persistence.Repositories
         {
             // include marker -- requires return _context.Empleados as it's own line with no extra text -- do not delete this comment
             return await _context.Empleados
-                .Include(e => e.DepartamentoEmpleado)
+                .Include(e => e.EmployeeDepartments)
                 .FirstOrDefaultAsync(e => e.Id == empleadoId);
         }
 
@@ -63,7 +63,7 @@ namespace VisitPop.Infrastructure.Persistence.Repositories
         {
             // include marker -- requires return _context.Empleados as it's own line with no extra text -- do not delete this comment
             return _context.Empleados
-                .Include(e => e.DepartamentoEmpleado)
+                .Include(e => e.EmployeeDepartments)
                 .FirstOrDefault(e => e.Id == empleadoId);
         }
 

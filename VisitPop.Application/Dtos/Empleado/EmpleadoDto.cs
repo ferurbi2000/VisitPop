@@ -1,4 +1,4 @@
-﻿using VisitPop.Application.Dtos.DepartamentoEmpleado;
+﻿using VisitPop.Application.Dtos.EmployeeDepartment;
 
 namespace VisitPop.Application.Dtos.Empleado
 {
@@ -9,9 +9,9 @@ namespace VisitPop.Application.Dtos.Empleado
         public string Apellidos { get; set; }
         public string Identidad { get; set; }
         public string Telefono { get; set; }
-        public int DepartamentoEmpleadoId { get; set; }
+        public int EmployeeDepartmentId { get; set; }
         public string Email { get; set; }
-        public DepartamentoEmpleadoDto DepartamentoEmpleado { get; set; }
+        public EmployeeDepartmentDto EmployeeDepartment { get; set; }
         
         // add-on property marker - Do Not Delete This Comment
     }

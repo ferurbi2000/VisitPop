@@ -1,3 +1,34 @@
 ﻿@{
     Layout = "_Layout";
 }
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+    // Clear the message with a spinner after page loaded
+    $(window).on('load', function () {
+        $('#btnAdd').prop('disabled', true);
+    });
+    // Show a message with a spinner before load page
+    $(window).on('beforeunload', function () {
+        $('#btnAdd').prop('disabled', false);
+        $('#btnAdd').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...');
+    });
+
+    $(document).ready(function () {
+        //  Add Asp.Net native validation inputs
+        $("input.input-validation-error").addClass("is-invalid");
+
+        // Show a message spinner to the button action until the page es loaded
+        $('#btnFetch').click(function () {
+
+            $(this).prop('disabled', true);
+            $(this).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Updating...');
+
+            $('#editForm').submit();
+        });
+    })
+
+</script>

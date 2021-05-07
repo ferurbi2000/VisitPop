@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VisitPop.Application.Mappings;
 using VisitPop.Infrastructure.Persistence.Contexts;
-using VisitPopApi.Tests.Fakes.DepartamentoEmpleado;
+using VisitPopApi.Tests.Fakes.EmployeeDepartment;
 using VisitPopApi.Tests.Fakes.Empleado;
 using VisitPopApi.Tests.Responses;
 using Xunit;
@@ -32,13 +32,13 @@ namespace VisitPopApi.Tests.IntegrationTests.Empleado
         {
 
 
-            var fakeDepartamento = new FakeDepartamentoEmpleado().Ignore(d => d.Id).Generate();
+            var fakeDepartamento = new FakeEmployeeDepartment().Ignore(d => d.Id).Generate();
 
             var fakeEmpleadoOne = new FakeEmpleado { }.Ignore(t => t.Id)
-                .Ignore(d => d.DepartamentoEmpleadoId).Generate();
+                .Ignore(d => d.EmployeeDepartmentId).Generate();
             //fakeEmpleadoOne.DepartamentoEmpleadoId = fakeDepartamento.Id;
             var fakeEmpleadoTwo = new FakeEmpleado { }.Ignore(t => t.Id)
-                .Ignore(d => d.DepartamentoEmpleadoId).Generate();
+                .Ignore(d => d.EmployeeDepartmentId).Generate();
             //fakeEmpleadoTwo.DepartamentoEmpleadoId = fakeDepartamento.Id;
 
             var appFactory = _factory;
@@ -48,14 +48,14 @@ namespace VisitPopApi.Tests.IntegrationTests.Empleado
                 var context = scope.ServiceProvider.GetRequiredService<VisitPopDbContext>();
                 context.Database.EnsureCreated();
 
-                context.DepartamentoEmpleados.AddRange(fakeDepartamento);
+                context.EmployeeDepartments.AddRange(fakeDepartamento);
                 context.SaveChanges();
 
-                fakeDepartamento = context.DepartamentoEmpleados.FirstOrDefault();
-                fakeEmpleadoOne.DepartamentoEmpleadoId = fakeDepartamento.Id;
-                fakeEmpleadoOne.DepartamentoEmpleado = fakeDepartamento;
-                fakeEmpleadoTwo.DepartamentoEmpleadoId = fakeDepartamento.Id;
-                fakeEmpleadoTwo.DepartamentoEmpleado = fakeDepartamento;
+                fakeDepartamento = context.EmployeeDepartments.FirstOrDefault();
+                fakeEmpleadoOne.EmployeeDepartmentId = fakeDepartamento.Id;
+                fakeEmpleadoOne.EmployeeDepartments = fakeDepartamento;
+                fakeEmpleadoTwo.EmployeeDepartmentId = fakeDepartamento.Id;
+                fakeEmpleadoTwo.EmployeeDepartments = fakeDepartamento;
 
                 //context.TipoPersonas.RemoveRange(context.TipoPersonas);
                 context.Empleados.AddRange(fakeEmpleadoOne, fakeEmpleadoTwo);

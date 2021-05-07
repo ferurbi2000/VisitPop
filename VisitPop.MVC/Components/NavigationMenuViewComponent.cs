@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using VisitPop.MVC.Models.ViewModels;
-using VisitPop.MVC.Services.DepartamentoEmpleado;
 
 namespace VisitPop.MVC.Components
 {
@@ -18,11 +14,12 @@ namespace VisitPop.MVC.Components
         }
 
         public IViewComponentResult Invoke()
-        {
-            List<MenuInfo> menu = new List<MenuInfo> {
+        {           
+
+            List <MenuInfo> menu = new List<MenuInfo> {
                 new MenuInfo{ Nombre="Dashboard", Controller="Home", Action="Index", IconClass="fas fa-tachometer-alt" },
                 new MenuInfo{ Nombre="Visitas", Controller="Visitas", Action="Index", IconClass="fas fa-id-card" },
-                new MenuInfo{ Nombre="Departamentos", Controller="DepartamentoEmpleados", Action="Index", IconClass="far fa-calendar" },
+                new MenuInfo{ Nombre="Employee Departments", Controller="EmployeeDepartments", Action="Index", IconClass="far fa-calendar" },
                 new MenuInfo{ Nombre="Empleados", Controller="Empleados", Action="Index", IconClass="fas fa-users" },
                 new MenuInfo{ Nombre="Empresas", Controller="Empresas", Action="Index", IconClass="fas fa-building" },
                 new MenuInfo{ Nombre="Estado Visitas", Controller="EstadoVisitas", Action="Index", IconClass="far fa-calendar" },

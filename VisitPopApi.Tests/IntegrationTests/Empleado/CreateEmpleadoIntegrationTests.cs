@@ -9,10 +9,10 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using VisitPop.Application.Dtos.DepartamentoEmpleado;
+using VisitPop.Application.Dtos.EmployeeDepartment;
 using VisitPop.Application.Mappings;
 using VisitPop.Infrastructure.Persistence.Contexts;
-using VisitPopApi.Tests.Fakes.DepartamentoEmpleado;
+using VisitPopApi.Tests.Fakes.EmployeeDepartment;
 using VisitPopApi.Tests.Fakes.Empleado;
 using VisitPopApi.Tests.Responses;
 using Xunit;
@@ -39,7 +39,7 @@ namespace VisitPopApi.Tests.IntegrationTests.Empleado
                 AllowAutoRedirect = false
             });
 
-            var fakeDepartamento = new FakeDepartamentoEmpleado().Ignore(d => d.Id).Generate();            
+            var fakeDepartamento = new FakeEmployeeDepartment().Ignore(d => d.Id).Generate();            
 
             var appFactory = _factory;
             using (var scope = appFactory.Services.CreateScope())
@@ -48,14 +48,14 @@ namespace VisitPopApi.Tests.IntegrationTests.Empleado
                 context.Database.EnsureCreated();
 
                 //context.Empleados.RemoveRange(context.Empleados);
-                context.DepartamentoEmpleados.AddRange(fakeDepartamento);
+                context.EmployeeDepartments.AddRange(fakeDepartamento);
                 context.SaveChanges();
                            
-                fakeDepartamento = context.DepartamentoEmpleados.FirstOrDefault();                
+                fakeDepartamento = context.EmployeeDepartments.FirstOrDefault();                
             }
 
-            var fakeEmpleado = new FakeEmpleadoDto().Ignore(d => d.Id).Ignore(d => d.DepartamentoEmpleadoId).Generate();            
-            fakeEmpleado.DepartamentoEmpleadoId = fakeDepartamento.Id;            
+            var fakeEmpleado = new FakeEmpleadoDto().Ignore(d => d.Id).Ignore(d => d.EmployeeDepartmentId).Generate();            
+            fakeEmpleado.EmployeeDepartmentId = fakeDepartamento.Id;            
 
             //Act
             var httpResponse = await client.PostAsJsonAsync("api/Empleados", fakeEmpleado)
@@ -74,7 +74,7 @@ namespace VisitPopApi.Tests.IntegrationTests.Empleado
             resultDto.Apellidos.Should().Be(fakeEmpleado.Apellidos);
             resultDto.Identidad.Should().Be(fakeEmpleado.Identidad);
             resultDto.Telefono.Should().Be(fakeEmpleado.Telefono);
-            resultDto.DepartamentoEmpleadoId.Should().Be(fakeEmpleado.DepartamentoEmpleadoId);
+            resultDto.EmployeeDepartmentId.Should().Be(fakeEmpleado.EmployeeDepartmentId);
             resultDto.Email.Should().Be(fakeEmpleado.Email);
             //resultDto.DepartamentoEmpleado.Should().Be(fakeEmpleado.DepartamentoEmpleado);
 

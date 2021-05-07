@@ -9,7 +9,7 @@
         <hr class="sidebar-divider my-0">
         <ul class="navbar-nav text-light" id="accordionSidebar">
             @foreach (var m in Model)
-            {
+            {                
                 <li class="nav-item">
                     <a class="nav-link @(m.Controller== ViewBag.SelectedMenu ? "active": "")" asp-action="Index" asp-controller="@m.Controller">
                         <i style="font-size: 18px;" class="@m.IconClass"></i>

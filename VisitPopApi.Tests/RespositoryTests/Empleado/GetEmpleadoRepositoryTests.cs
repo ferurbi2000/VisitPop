@@ -45,9 +45,9 @@ namespace VisitPopApi.Tests.RespositoryTests.Empleado
                 empleadoById.Apellidos.Should().Be(fakeEmpleado.Apellidos);
                 empleadoById.Identidad.Should().Be(fakeEmpleado.Identidad);
                 empleadoById.Telefono.Should().Be(fakeEmpleado.Telefono);
-                empleadoById.DepartamentoEmpleadoId.Should().Be(fakeEmpleado.DepartamentoEmpleadoId);
+                empleadoById.EmployeeDepartmentId.Should().Be(fakeEmpleado.EmployeeDepartmentId);
                 empleadoById.Email.Should().Be(fakeEmpleado.Email);
-                empleadoById.DepartamentoEmpleado.Should().Be(fakeEmpleado.DepartamentoEmpleado);
+                empleadoById.EmployeeDepartments.Should().Be(fakeEmpleado.EmployeeDepartments);
             }
         }
 
@@ -785,13 +785,13 @@ namespace VisitPopApi.Tests.RespositoryTests.Empleado
             var sieveOptions = Options.Create(new SieveOptions());
 
             var fakeEmpleadoOne = new FakeEmpleado { }.Generate();
-            fakeEmpleadoOne.DepartamentoEmpleadoId = 1;
+            fakeEmpleadoOne.EmployeeDepartmentId = 1;
 
             var fakeEmpleadoTwo = new FakeEmpleado { }.Generate();
-            fakeEmpleadoTwo.DepartamentoEmpleadoId = 2;
+            fakeEmpleadoTwo.EmployeeDepartmentId = 2;
 
             var fakeEmpleadoThree = new FakeEmpleado { }.Generate();
-            fakeEmpleadoThree.DepartamentoEmpleadoId = 3;
+            fakeEmpleadoThree.EmployeeDepartmentId = 3;
 
             //Act
             using (var context = new VisitPopDbContext(dbOptions))
@@ -801,7 +801,7 @@ namespace VisitPopApi.Tests.RespositoryTests.Empleado
 
                 var service = new EmpleadoRepository(context, new SieveProcessor(sieveOptions));
 
-                var empleadoRepo = await service.GetEmpleadosAsync(new EmpleadoParametersDto { Filters = $"DepartamentoEmpleadoId == {fakeEmpleadoTwo.DepartamentoEmpleadoId}" });
+                var empleadoRepo = await service.GetEmpleadosAsync(new EmpleadoParametersDto { Filters = $"DepartamentoEmpleadoId == {fakeEmpleadoTwo.EmployeeDepartmentId}" });
 
                 //Assert
                 empleadoRepo.Should()

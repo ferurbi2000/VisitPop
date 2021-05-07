@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Sieve.Services;
-using VisitPop.Application.Interfaces.DepartamentoEmpleado;
+using VisitPop.Application.Interfaces.EmployeeDepartment;
 using VisitPop.Application.Interfaces.Empleado;
 using VisitPop.Application.Interfaces.Empresa;
 using VisitPop.Application.Interfaces.EstadoVisita;
@@ -43,7 +43,7 @@ namespace VisitPop.Infrastructure.Persistence
 
             #region Repositories -- Do Not Delete
 
-            service.AddScoped<IDepartamentoEmpleadoRepository, DepartamentoEmpleadoRepository>();
+            service.AddScoped<IEmployeeDepartmentRepository, EmployeeDepartmentRepository>();
             service.AddScoped<IEmpleadoRepository, EmpleadoRepository>();
             service.AddScoped<IEmpresaRepository, EmpresaRepository>();
             service.AddScoped<IEstadoVisitaRepository, EstadoVisitaRepository>();
