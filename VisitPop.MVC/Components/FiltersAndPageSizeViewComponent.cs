@@ -10,9 +10,9 @@ namespace VisitPop.MVC.Components
 
         }
 
-        public IViewComponentResult Invoke(int pageSize, string filter)
+        public IViewComponentResult Invoke(int pageSize, string filter, string toolTip)
         {
-            return View(new FiltersAndPageSizeVm { PageSize = pageSize, Filter = filter });
+            return View(new FiltersAndPageSizeVm { PageSize = pageSize, Filter = filter, ToolTip = toolTip });
         }
     }
 }

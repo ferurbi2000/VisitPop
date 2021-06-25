@@ -1,7 +1,7 @@
 ﻿@model FiltersAndPageSizeVm
- 
+
 <div class="col-md-6 text-nowrap">
-    <div>        
+    <div>
         <label>
             Show
             <select name="pageSize" asp-for="@Model.PageSize" onchange="javascript:this.form.submit()"
@@ -12,17 +12,21 @@
                 <option value="100">100</option>
             </select>
 
-        </label>        
+        </label>
     </div>
 </div>
 
 <div class="col-md-6">
-    <div class="text-md-right">        
+    <div class="text-md-right">
         <label>
             <input name="filters" asp-for="@Model.Filter"
                    class="form-control form-control-sm" type="search"
                    placeholder="Search for ..."
-                   onchange="javascript:this.form.submit()" />
+                   onchange="javascript:this.form.submit()"
+                   data-toggle="tooltip"
+                   data-placement="top"
+                   data-html="true"
+                   title="<em>Search</em> <u>for</u> <b>@Model.ToolTip</b>" />
         </label>
     </div>
 </div>

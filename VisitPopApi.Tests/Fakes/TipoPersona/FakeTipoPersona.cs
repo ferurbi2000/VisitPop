@@ -5,7 +5,7 @@
     using VisitPop.Domain.Entities;
 
     // or replace 'AutoFaker' with 'Faker' along with your own rules if you don't want all fields to be auto faked
-    public class FakeTipoPersona : AutoFaker<TipoPersona>
+    public class FakeTipoPersona : AutoFaker<PersonType>
     {
         public FakeTipoPersona()
         {

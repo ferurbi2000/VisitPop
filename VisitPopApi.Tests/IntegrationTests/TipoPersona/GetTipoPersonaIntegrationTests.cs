@@ -39,7 +39,7 @@ namespace VisitPopApi.Tests.IntegrationTests.TipoPersona
                 context.Database.EnsureCreated();
 
                 //context.TipoPersonas.RemoveRange(context.TipoPersonas);
-                context.TipoPersonas.AddRange(fakeTipoPersonaOne, fakeTipoPersonaTwo);
+                context.PersonTypes.AddRange(fakeTipoPersonaOne, fakeTipoPersonaTwo);
 
                 context.SaveChanges();
 

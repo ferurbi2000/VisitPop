@@ -43,7 +43,7 @@ namespace VisitPopApi.Tests.IntegrationTests.TipoPersona
             var resultDto = JsonConvert.DeserializeObject<TipoPersonaResponseDto>(stringResponse).TipoPersona;
 
             httpResponse.StatusCode.Should().Be(201);
-            resultDto.Nombre.Should().Be(fakeTipoPersona.Nombre);
+            resultDto.Name.Should().Be(fakeTipoPersona.Name);
 
         }
     }

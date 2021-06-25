@@ -1,14 +1,17 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using VisitPop.MVC.Services.Company;
+using VisitPop.MVC.Services.Employee;
 using VisitPop.MVC.Services.EmployeeDepartment;
+using VisitPop.MVC.Services.Office;
+using VisitPop.MVC.Services.PersonType;
+using VisitPop.MVC.Services.RegisterControl;
+using VisitPop.MVC.Services.VehicleType;
+using VisitPop.MVC.Services.VisitState;
+using VisitPop.MVC.Services.VisitType;
 
 namespace VisitPop.MVC
 {
@@ -26,6 +29,14 @@ namespace VisitPop.MVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IEmployeeDepartmentRepository, EmployeeDepartmentRepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<ICompanyRepository, CompanyRepository>();
+            services.AddScoped<IVisitStateRepository, VisitStateRepository>();
+            services.AddScoped<IOfficeRepository, OfficeRepository>();
+            services.AddScoped<IPersonTypeRepository, PersonTypeRepository>();
+            services.AddScoped<IVehicleTypeRepository, VehicleTypeRepository>();
+            services.AddScoped<IVisitTypeRepository, VisitTypeRepository>();
+            services.AddScoped<IRegisterControlRepository, RegisterControlRepository>();
 
             services.AddMvc();
 
@@ -39,7 +50,7 @@ namespace VisitPop.MVC
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();                
+                app.UseDeveloperExceptionPage();
             }
 
             app.UseHttpsRedirection();
@@ -50,7 +61,7 @@ namespace VisitPop.MVC
 
             app.UseStaticFiles();
 
-                     
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

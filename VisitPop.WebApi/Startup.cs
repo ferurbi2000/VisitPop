@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using VisitPop.Application;
 using VisitPop.Infrastructure.Persistence;
+using VisitPop.Infrastructure.Persistence.Contexts;
+using VisitPop.Infrastructure.Shared;
 using VisitPop.WebApi.Extensions;
 
 namespace VisitPop.WebApi
@@ -26,7 +28,7 @@ namespace VisitPop.WebApi
             services.AddCordService("MyCorsPolicy");
             services.AddApplicationLayer();
             services.AddPersistenceInfrastructure(_config);
-            //TODO: services.AddSharedInfrastructure(_config);
+            services.AddSharedInfrastructure(_config);
             services.AddControllers()
                 .AddNewtonsoftJson();
             services.AddApiVersioningExtension();
@@ -40,6 +42,17 @@ namespace VisitPop.WebApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+            #region Entity Context Region - Do Not Delete
+
+            using (var context = app.ApplicationServices.GetService<VisitPopDbContext>())
+            {
+                context.Database.EnsureCreated();                
+            }
+
+            #endregion
+
+
             app.UseCors("MyCorsPolicy");
 
             app.UseSerilogRequestLogging();

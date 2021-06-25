@@ -31,15 +31,15 @@ namespace VisitPopApi.Tests.RespositoryTests.TipoPersona
             //Act
             using (var context = new VisitPopDbContext(dbOptions))
             {
-                context.TipoPersonas.AddRange(fakeTipoPersonaOne, fakeTipoPersonaTwo, fakeTipoPersonaThree);
+                context.PersonTypes.AddRange(fakeTipoPersonaOne, fakeTipoPersonaTwo, fakeTipoPersonaThree);
 
-                var service = new TipoPersonaRepository(context, new SieveProcessor(sieveOptions));
-                service.DeleteTipoPersona(fakeTipoPersonaTwo);
+                var service = new PersonTypeRepository(context, new SieveProcessor(sieveOptions));
+                service.DeletePersonType(fakeTipoPersonaTwo);
 
                 context.SaveChanges();
 
                 //Assert
-                var TipoPersonList = context.TipoPersonas.ToList();
+                var TipoPersonList = context.PersonTypes.ToList();
 
                 TipoPersonList.Should()
                     .NotBeEmpty()

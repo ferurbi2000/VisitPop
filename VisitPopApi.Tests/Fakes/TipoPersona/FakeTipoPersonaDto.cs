@@ -5,7 +5,7 @@ namespace VisitPopApi.Tests.Fakes.TipoPersona
     using VisitPop.Application.Dtos.TipoPersona;
 
     // or replace 'AutoFaker' with 'Faker' along with your own rules if you don't want all fields to be auto faked
-    public class FakeTipoPersonaDto : AutoFaker<TipoPersonaDto>
+    public class FakeTipoPersonaDto : AutoFaker<PersonTypeDto>
     {
         public FakeTipoPersonaDto()
         {

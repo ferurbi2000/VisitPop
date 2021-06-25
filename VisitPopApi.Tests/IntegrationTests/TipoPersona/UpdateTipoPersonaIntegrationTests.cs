@@ -30,12 +30,12 @@ namespace VisitPopApi.Tests.IntegrationTests.TipoPersona
             //Arrange
             var mapper = new MapperConfiguration(cfg =>
             {
-                cfg.AddProfile<TipoPersonaProfile>();
+                cfg.AddProfile<PersonTypeProfile>();
             }).CreateMapper();
 
             var fakeTipoPersonaOne = new FakeTipoPersona { }.Ignore(t => t.Id).Generate();
-            var expectedFinalObject = mapper.Map<TipoPersonaDto>(fakeTipoPersonaOne);
-            expectedFinalObject.Nombre = "Easily Identified Value For Test";
+            var expectedFinalObject = mapper.Map<PersonTypeDto>(fakeTipoPersonaOne);
+            expectedFinalObject.Name = "Easily Identified Value For Test";
 
             var appFactory = _factory;
             using (var scope = appFactory.Services.CreateScope())
@@ -44,7 +44,7 @@ namespace VisitPopApi.Tests.IntegrationTests.TipoPersona
                 context.Database.EnsureCreated();
 
                 //context.TipoPersonas.RemoveRange(context.TipoPersonas);
-                context.TipoPersonas.AddRange(fakeTipoPersonaOne);
+                context.PersonTypes.AddRange(fakeTipoPersonaOne);
                 context.SaveChanges();
             }
 
@@ -57,7 +57,7 @@ namespace VisitPopApi.Tests.IntegrationTests.TipoPersona
 
             // Act
             // get the value i want to update. assumes I can use sieve for this field. if this is not an option, just use something else
-            var getResult = await client.GetAsync($"api/TipoPersonas/?filters=Nombre=={fakeTipoPersonaOne.Nombre}")
+            var getResult = await client.GetAsync($"api/TipoPersonas/?filters=Nombre=={fakeTipoPersonaOne.Name}")
                 .ConfigureAwait(false);
             var getResponseContent = await getResult.Content.ReadAsStringAsync()
                 .ConfigureAwait(false);

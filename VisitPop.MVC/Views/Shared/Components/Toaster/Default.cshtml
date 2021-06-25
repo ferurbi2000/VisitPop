@@ -3,7 +3,7 @@
 @if ((Model.Message != ""))
 {
     <div class="position-fixed bottom-0 right-0 p-3" style="z-index: 5; right: 0; bottom: 0;">
-        <div class="toast align-items-center text-white bg-gradient-@Enum.GetName(typeof(ToasterType),Model.ToasterType) border-0 shadow-sm" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000">
+        <div class="toast align-items-center text-white bg-@Enum.GetName(typeof(ToasterType),Model.ToasterType) border-0 shadow-sm" role="alert" aria-live="assertive" aria-atomic="true" data-delay="5000">
             <div class="d-flex">
                 <div class="toast-body">
                     @switch (Model.ToasterType)

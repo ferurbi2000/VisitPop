@@ -46,19 +46,19 @@ namespace VisitPop.Domain.Entities
         public int EstadoVisitaId { get; set; }
 
         [ForeignKey("TipoVisitaId")]
-        public TipoVisita TipoVisita { get; set; }
+        public VisitType TipoVisita { get; set; }
 
         [ForeignKey("EmpleadoId")]
-        public Empleado Empleado { get; set; }
+        public Employee Empleado { get; set; }
 
         [ForeignKey("OficinaId")]
-        public Oficina Oficina { get; set; }
+        public Office Oficina { get; set; }
 
         [ForeignKey("PuntoControlId")]
-        public PuntoControl PuntoControl { get; set; }
+        public RegisterControl PuntoControl { get; set; }
 
         [ForeignKey("EstadoVisitaId")]
-        public EstadoVisita EstadoVisita { get; set; }
+        public VisitState EstadoVisita { get; set; }
 
         // add-on property marker - Do Not Delete This Comment
     }

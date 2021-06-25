@@ -7,6 +7,7 @@ using VisitPop.Application;
 using VisitPop.Infrastructure.Persistence;
 using VisitPop.Infrastructure.Persistence.Contexts;
 using VisitPop.Infrastructure.Persistence.Seeders;
+using VisitPop.Infrastructure.Shared;
 using VisitPop.WebApi.Extensions;
 
 namespace VisitPop.WebApi
@@ -26,7 +27,7 @@ namespace VisitPop.WebApi
             services.AddCordService("MyCorsPolicy");
             services.AddApplicationLayer();
             services.AddPersistenceInfrastructure(_config);
-            //TODO: services.AddSharedInfrastructure(_config);
+            services.AddSharedInfrastructure(_config);
             services.AddControllers()
                 .AddNewtonsoftJson();
             services.AddApiVersioningExtension();
@@ -49,15 +50,15 @@ namespace VisitPop.WebApi
 
                 #region VisitPopDbContext Seeder Region - Do Not Delete
                 EmployeeDepartmentSeeder.SeedSampleEmployeeDepartmentData(app.ApplicationServices.GetService<VisitPopDbContext>());
-                EmpleadoSeeder.SeedSampleEmpleadoData(app.ApplicationServices.GetService<VisitPopDbContext>());
-                EmpresaSeeder.SeedEmpresaData(app.ApplicationServices.GetService<VisitPopDbContext>());
-                EstadoVisitaSeeder.SeedEstadoVisitaData(app.ApplicationServices.GetService<VisitPopDbContext>());
-                OficinaSeeder.SeedSampleOficinaData(app.ApplicationServices.GetService<VisitPopDbContext>());
+                EmployeeSeeder.SeedSampleEmployeeData(app.ApplicationServices.GetService<VisitPopDbContext>());
+                CompanySeeder.SeedEmpresaData(app.ApplicationServices.GetService<VisitPopDbContext>());
+                VisitStateSeeder.SeedVisitStateData(app.ApplicationServices.GetService<VisitPopDbContext>());
+                OfficeSeeder.SeedSampleOfficeData(app.ApplicationServices.GetService<VisitPopDbContext>());
                 ObservacionSeeder.SeedSampleObservacionData(app.ApplicationServices.GetService<VisitPopDbContext>());
-                PuntoControlSeeder.SeedPuntoControlData(app.ApplicationServices.GetService<VisitPopDbContext>());
-                TipoPersonaSeeder.TipoPersonaSampleData(app.ApplicationServices.GetService<VisitPopDbContext>());
-                TipoVehiculoSeeder.TipoVehiculoSampleData(app.ApplicationServices.GetService<VisitPopDbContext>());
-                TipoVisitaSeeder.TipoVisitaSampleData(app.ApplicationServices.GetService<VisitPopDbContext>());
+                RegisterControlSeeder.SeedRegisterControlData(app.ApplicationServices.GetService<VisitPopDbContext>());
+                PersonTypeSeeder.PersonTypeSampleData(app.ApplicationServices.GetService<VisitPopDbContext>());
+                VehicleTypeSeeder.VehicleTypeSampleData(app.ApplicationServices.GetService<VisitPopDbContext>());
+                VisitTypeSeeder.VisitTypeSampleData(app.ApplicationServices.GetService<VisitPopDbContext>());
                 PersonaSeeder.PersonaSampleData(app.ApplicationServices.GetService<VisitPopDbContext>());
 
                 VisitaSeeder.SeedSampleVisitaData(app.ApplicationServices.GetService<VisitPopDbContext>());

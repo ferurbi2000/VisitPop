@@ -40,6 +40,7 @@ namespace VisitPop.MVC.Models.ViewModels
                 EmployeeDepartment = employeeDepartment,
                 Theme = "warning",
                 Action = "Edit",
+                ShowCreateNewAction = true,
                 ReturnUrl = returnUrl
             };
         }

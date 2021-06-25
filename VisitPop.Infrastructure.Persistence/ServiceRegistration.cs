@@ -2,21 +2,22 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Sieve.Services;
+using VisitPop.Application.Interfaces.Company;
+using VisitPop.Application.Interfaces.Employee;
 using VisitPop.Application.Interfaces.EmployeeDepartment;
-using VisitPop.Application.Interfaces.Empleado;
-using VisitPop.Application.Interfaces.Empresa;
-using VisitPop.Application.Interfaces.EstadoVisita;
 using VisitPop.Application.Interfaces.Observacion;
-using VisitPop.Application.Interfaces.Oficina;
+using VisitPop.Application.Interfaces.Office;
 using VisitPop.Application.Interfaces.Persona;
-using VisitPop.Application.Interfaces.PuntoControl;
-using VisitPop.Application.Interfaces.TipoPersona;
-using VisitPop.Application.Interfaces.TipoVehiculo;
-using VisitPop.Application.Interfaces.TipoVisita;
+using VisitPop.Application.Interfaces.PersonType;
+using VisitPop.Application.Interfaces.RegisterControl;
+using VisitPop.Application.Interfaces.VisitType;
+using VisitPop.Application.Interfaces.VehicleType;
 using VisitPop.Application.Interfaces.Visita;
 using VisitPop.Application.Interfaces.VisitaPersona;
+using VisitPop.Application.Interfaces.VisitState;
 using VisitPop.Infrastructure.Persistence.Contexts;
 using VisitPop.Infrastructure.Persistence.Repositories;
+
 
 namespace VisitPop.Infrastructure.Persistence
 {
@@ -44,15 +45,15 @@ namespace VisitPop.Infrastructure.Persistence
             #region Repositories -- Do Not Delete
 
             service.AddScoped<IEmployeeDepartmentRepository, EmployeeDepartmentRepository>();
-            service.AddScoped<IEmpleadoRepository, EmpleadoRepository>();
-            service.AddScoped<IEmpresaRepository, EmpresaRepository>();
-            service.AddScoped<IEstadoVisitaRepository, EstadoVisitaRepository>();
-            service.AddScoped<IOficinaRepository, OficinaRepository>();
+            service.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            service.AddScoped<ICompanyRepository, CompanyRepository>();
+            service.AddScoped<IVisitStateRepository, VisitStateRepository>();
+            service.AddScoped<IOfficeRepository, OfficeRepository>();
             service.AddScoped<IObservacionRepository, ObservacionRepository>();
-            service.AddScoped<IPuntoControlRepository, PuntoControlRepository>();
-            service.AddScoped<ITipoPersonaRepository, TipoPersonaRepository>();
-            service.AddScoped<ITipoVehiculoRepository, TipoVehiculoRepository>();
-            service.AddScoped<ITipoVisitaRepository, TipoVisitaRepository>();
+            service.AddScoped<IRegisterControlRepository, RegisterControlRepository>();
+            service.AddScoped<IPersonTypeRepository, PersonTypeRepository>();
+            service.AddScoped<IVehicleTypeRepository, VehicleTypeRepository>();
+            service.AddScoped<IVisitTypeRepository, VisitTypeRepository>();
             service.AddScoped<IPersonaRepository, PersonaRepository>();
 
             service.AddScoped<IVisitaRepository, VisitaRepository>();

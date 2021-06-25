@@ -42,10 +42,10 @@ namespace VisitPop.Domain.Entities
 
 
         [ForeignKey("TipoPersonaId")]
-        public TipoPersona TipoPersona { get; set; }
+        public PersonType TipoPersona { get; set; }
 
         [ForeignKey("EmpresaId")]
-        public Empresa Empresa { get; set; }
+        public Company Empresa { get; set; }
 
         // add-on property marker - Do Not Delete This Comment
 

@@ -11,11 +11,12 @@ namespace VisitPop.MVC.Controllers
     [AutoValidateAntiforgeryToken]
     public class EmployeeDepartmentsController : Controller
     {
-        private IEmployeeDepartmentRepository _context;
+        private IEmployeeDepartmentRepository _employeeDeparment;
 
-        public EmployeeDepartmentsController(IEmployeeDepartmentRepository context)
+        public EmployeeDepartmentsController(IEmployeeDepartmentRepository employeeDepartmentRepo)
         {
-            _context = context;
+            _employeeDeparment = employeeDepartmentRepo ??
+                throw new ArgumentNullException(nameof(employeeDepartmentRepo));
 
         }
 
@@ -29,14 +30,17 @@ namespace VisitPop.MVC.Controllers
             ViewData["NameSortParm"] = sortOrder == "Name" ? "-Name" : "Name";
 
             EmployeeDepartmentParametersDto employeeDepartmentParameters = new EmployeeDepartmentParametersDto() { PageNumber = page, PageSize = pageSize, SortOrder = sortOrder, Filters = filters };
-            var pagingResponse = await _context.GetEmployeeDepartmentsAsync(employeeDepartmentParameters);
+            var pagingResponse = await _employeeDeparment.GetEmployeeDepartmentsAsync(employeeDepartmentParameters);
 
             return View(pagingResponse);
         }
 
-        public IActionResult Create()
+        public IActionResult Create(string returnUrl)
         {
-            var returnUrl = Request.Headers["Referer"].ToString();
+            if (String.IsNullOrEmpty(returnUrl))
+            {
+                returnUrl = Request.Headers["Referer"].ToString();
+            }
 
             return View("Edit", EmployeeDepartmentViewModelFactory.Create(new EmployeeDepartmentDto(), returnUrl));
         }
@@ -46,7 +50,7 @@ namespace VisitPop.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var newEmployeeDepartment = await _context.AddEmployeeDepartment(employeeDepartmentVM.EmployeeDepartment);
+                var newEmployeeDepartment = await _employeeDeparment.AddEmployeeDepartment(employeeDepartmentVM.EmployeeDepartment);
 
                 TempData["message"] = "Your data has been submitted successfully.";
                 TempData["toasterType"] = ToasterType.success;
@@ -54,6 +58,7 @@ namespace VisitPop.MVC.Controllers
                 //return RedirectToAction(nameof(Index));
 
                 return RedirectToAction(nameof(Edit), new { id = newEmployeeDepartment.Id, returnUrl = employeeDepartmentVM.ReturnUrl });
+
             }
 
             TempData["message"] = "A problem has been ocurred while submitting your data.";
@@ -66,7 +71,7 @@ namespace VisitPop.MVC.Controllers
         {
             var returnUrl = Request.Headers["Referer"].ToString();
 
-            var employeeDepartment = await _context.GetEmployeeDepartment(id);
+            var employeeDepartment = await _employeeDeparment.GetEmployeeDepartment(id);
             EmployeeDepartmentViewModel department = EmployeeDepartmentViewModelFactory.Details(employeeDepartment, returnUrl);
 
             return View("Edit", department);
@@ -79,7 +84,7 @@ namespace VisitPop.MVC.Controllers
                 returnUrl = Request.Headers["Referer"].ToString();
             }
 
-            var employeeDepartment = await _context.GetEmployeeDepartment(id);
+            var employeeDepartment = await _employeeDeparment.GetEmployeeDepartment(id);
             EmployeeDepartmentViewModel deparment = EmployeeDepartmentViewModelFactory.Edit(employeeDepartment, returnUrl);
 
             return View("Edit", deparment);
@@ -90,16 +95,18 @@ namespace VisitPop.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _context.UpdateEmployeeDepartment(employeeDepartmentVM.EmployeeDepartment);
+                await _employeeDeparment.UpdateEmployeeDepartment(employeeDepartmentVM.EmployeeDepartment);
 
                 TempData["message"] = "Your data has been updated successfully.";
                 TempData["toasterType"] = ToasterType.success;
+
+                return RedirectToAction(nameof(Edit), new { id = employeeDepartmentVM.EmployeeDepartment.Id, returnUrl = employeeDepartmentVM.ReturnUrl });
             }
             else
             {
                 TempData["message"] = "A problem has been ocurred while updating your data.";
                 TempData["toasterType"] = ToasterType.info;
-            }            
+            }
 
             return View("Edit", EmployeeDepartmentViewModelFactory.Edit(employeeDepartmentVM.EmployeeDepartment, employeeDepartmentVM.ReturnUrl));
         }
@@ -108,7 +115,7 @@ namespace VisitPop.MVC.Controllers
         {
             var returnUrl = Request.Headers["Referer"].ToString();
 
-            var employeeDepartment = await _context.GetEmployeeDepartment(id);
+            var employeeDepartment = await _employeeDeparment.GetEmployeeDepartment(id);
             EmployeeDepartmentViewModel deparment = EmployeeDepartmentViewModelFactory.Delete(employeeDepartment, returnUrl);
 
             return View("Edit", deparment);
@@ -117,7 +124,7 @@ namespace VisitPop.MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(EmployeeDepartmentViewModel employeeDepartmentVM)
         {
-            await _context.DeleteEmployeeDepartment(employeeDepartmentVM.EmployeeDepartment);
+            await _employeeDeparment.DeleteEmployeeDepartment(employeeDepartmentVM.EmployeeDepartment);
 
             TempData["message"] = "Your data has been deleted successfully.";
             TempData["toasterType"] = ToasterType.success;

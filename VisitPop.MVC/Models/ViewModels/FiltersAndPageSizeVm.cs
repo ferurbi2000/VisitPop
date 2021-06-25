@@ -9,5 +9,6 @@ namespace VisitPop.MVC.Models.ViewModels
     {
         public int PageSize { get; set; }
         public string Filter { get; set; }
+        public string ToolTip { get; set; }
     }
 }

@@ -1,0 +1,76 @@
+﻿@model VisitTypeViewModel
+
+@if (TempData["message"] != null)
+{
+    <vc:toaster message=@TempData["message"] , toaster-type="@((ToasterType)TempData["toasterType"])" />
+}
+
+<div class="d-sm-flex justify-content-between align-items-center mb-4">
+    <h3 class="text-dark mb-0">Visit Type</h3>
+</div>
+
+<div class="row">
+    <div class="col-lg-8 col-xl-9">
+        <div class="card shadow">
+
+            <div class="card-header">
+                <p class="text-black-50 m-0 font-weight-bold">@Model.Action</p>
+            </div>
+
+            <div class="card-body">
+
+                <form id="editForm" asp-action="@Model.Action" method="post">
+
+                    <div class="form-group">
+                        <input class="form-control" asp-for="ReturnUrl" hidden />
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3 position-relative">
+                            <div class="form-group">
+                                <label asp-for="VisitType.Id"></label>
+                                <input class="form-control form-control-sm" asp-for="VisitType.Id" readonly />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md position-relative">
+                            <div class="form-group">
+                                <label asp-for="VisitType.Name"></label>
+                                <input class="form-control form-control-sm" asp-for="VisitType.Name" readonly="@Model.ReadOnly" />
+                                <div>
+                                    <span asp-validation-for="VisitType.Name" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @if (Model.ShowAction)
+                    {
+                        @if (Model.ShowCreateNewAction)
+                        {
+                            <a asp-action="Create" class="btn btn-sm btn-primary" asp-route-returnurl="@Model.ReturnUrl">
+                                <i class="fas fa-plus fa-lg text-white-50"></i>
+                                Create New
+                            </a>
+                        }
+
+                        <button id="btnFetch" class="btn btn-sm btn-@Model.Theme" type="submit">
+                            <i class="far fa-save fa-lg text-white-50"></i>
+                            @Model.Action
+                        </button>
+                    }
+
+                    <a class="btn btn-sm btn-secondary" href="@Model.ReturnUrl">
+                        <i class="fas fa-times fa-lg text-white-50"></i>
+                        Close
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-xl-3">
+        <vc:edit-audit entity=@Model.VisitType />
+    </div>
+</div>

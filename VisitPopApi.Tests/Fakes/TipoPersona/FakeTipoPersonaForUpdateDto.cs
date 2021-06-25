@@ -4,7 +4,7 @@
     using VisitPop.Application.Dtos.TipoPersona;
 
     // or replace 'AutoFaker' with 'Faker' along with your own rules if you don't want all fields to be auto faked
-    public class FakeTipoPersonForUpdateDto : AutoFaker<TipoPersonaForUpdatedDto>
+    public class FakeTipoPersonForUpdateDto : AutoFaker<PersonTypeForUpdatedDto>
     {
         public FakeTipoPersonForUpdateDto()
         {

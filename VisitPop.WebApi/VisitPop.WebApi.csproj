@@ -30,11 +30,13 @@
 
 	<PropertyGroup>
 		<IncludeOpenAPIAnalyzers>true</IncludeOpenAPIAnalyzers>
+		<UserSecretsId>389ce52f-8c4d-4fb0-a4f7-d902e760b0b9</UserSecretsId>
 	</PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\VisitPop.Application\VisitPop.Application.csproj" />
     <ProjectReference Include="..\VisitPop.Infrastructure.Persistence\VisitPop.Infrastructure.Persistence.csproj" />
+    <ProjectReference Include="..\VisitPop.Infrastructure.Shared\VisitPop.Infrastructure.Shared.csproj" />
   </ItemGroup>
 
 </Project>

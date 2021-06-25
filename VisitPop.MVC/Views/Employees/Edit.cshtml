@@ -1,0 +1,151 @@
+﻿@model EmployeeViewModel
+
+@if (TempData["message"] != null)
+{
+    <vc:toaster message=@TempData["message"] , toaster-type="@((ToasterType)TempData["toasterType"])" />
+}
+
+<div class="d-sm-flex justify-content-between align-items-center mb-4">
+    <h3 class="text-dark mb-0">Employee</h3>
+</div>
+
+<div class="row">
+    <div class="col-lg-8 col-xl-9">
+
+        <div class="card shadow mb-4">
+
+            <div class="card-header">
+                <p class="text-black-50 m-0 font-weight-bold">@Model.Action</p>
+            </div>
+
+            <div class="card-body">
+
+                <form id="editForm" asp-action="@Model.Action" method="post">
+                    <div class="form-group">
+                        <input class="form-control" asp-for="ReturnUrl" hidden />                                 
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3 position-relative">
+                            <div class="form-group">
+                                <label asp-for="Employee.Id"></label>
+                                <input class="form-control form-control-sm" asp-for="Employee.Id" readonly />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md position-relative">
+                            <div class="form-group">
+                                <label asp-for="Employee.FirstName"></label>
+                                <input class="form-control form-control-sm" asp-for="Employee.FirstName" readonly="@Model.ReadOnly" />
+                                <div>
+                                    <span asp-validation-for="Employee.FirstName" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md position-relative">
+                            <div class="form-group">
+                                <label asp-for="Employee.LastName"></label>
+                                <input class="form-control form-control-sm" asp-for="Employee.LastName" readonly="@Model.ReadOnly" />
+                                <div>
+                                    <span asp-validation-for="Employee.LastName" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md position-relative">
+                            <div class="form-group">
+                                <label asp-for="Employee.DocId"></label>
+                                <input class="form-control form-control-sm" asp-for="Employee.DocId" readonly="@Model.ReadOnly" />
+                                <div>
+                                    <span asp-validation-for="Employee.DocId" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md position-relative">
+                            <div class="form-group">
+                                <label asp-for="Employee.PhoneNumber"></label>
+                                <input class="form-control form-control-sm" asp-for="Employee.PhoneNumber" readonly="@Model.ReadOnly" />
+                                <div>
+                                    <span asp-validation-for="Employee.PhoneNumber" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md position-relative">
+                            <div class="form-group">
+                                <label asp-for="Employee.EmailAddress"></label>
+                                <input class="form-control form-control-sm" asp-for="Employee.EmailAddress" readonly="@Model.ReadOnly" />
+                                <div>
+                                    <span asp-validation-for="Employee.EmailAddress" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md position-relative">
+
+                            <label asp-for="Employee.EmployeeDepartmentId">Department</label>
+
+                            <div class="input-group input-group-sm">
+                                <select asp-for="Employee.EmployeeDepartmentId" class="form-control" disabled="@Model.ReadOnly"
+                                        asp-items="@(new SelectList(Model.EmployeeDepartment, "Id", "Name"))">
+                                    <option value="" disabled selected>Choose a Department</option>
+                                </select>
+                                @*<div class="input-group-append">      
+                                    <input type="hidden" name="returnUrl" value="@Model.Action" />
+                                    <button asp-controller="EmployeeDepartments" asp-action="Create"
+                                            formmethod="get" formnovalidate
+                                            class="btn btn-secondary" data-toggle="tooltip" title="Add New Department" disabled="@Model.ReadOnly">
+                                        <i class="fas fa-plus fa-sm text-white-50"></i>
+                                    </button>
+                                </div>*@
+                            </div>
+
+                            <div>
+                                <span asp-validation-for="Employee.EmployeeDepartmentId" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    @if (Model.ShowAction)
+                    {
+                        @if (Model.ShowCreateNewAction)
+                        {
+                            <a asp-action="Create" class="btn btn-sm btn-primary" asp-route-returnurl="@Model.ReturnUrl">
+                                <i class="fas fa-plus fa-lg text-white-50"></i>
+                                Create New
+                            </a>
+                        }
+
+                        <button id="btnFetch" class="btn btn-sm btn-@Model.Theme" type="submit">
+                            <i class="far fa-save fa-lg text-white-50"></i>
+                            @Model.Action
+                        </button>
+                    }
+
+                    <a class="btn btn-sm btn-secondary" href="@Model.ReturnUrl">
+                        <i class="fas fa-times fa-lg text-white-50"></i>
+                        Close
+                    </a>
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-4 col-xl-3">
+        <vc:edit-audit entity=@Model.Employee/>        
+    </div>
+</div>
+
+
+
+

@@ -12,7 +12,7 @@ namespace VisitPopApi.Tests.Responses
     {
         
         [JsonProperty("data")]
-        public TipoPersonaDto TipoPersona { get; set; }
+        public PersonTypeDto TipoPersona { get; set; }
 
     }
    
@@ -20,6 +20,6 @@ namespace VisitPopApi.Tests.Responses
     {
 
         [JsonProperty("data")]
-        public List<TipoPersonaDto> TipoPersonas { get; set; }
+        public List<PersonTypeDto> TipoPersonas { get; set; }
     }
 }

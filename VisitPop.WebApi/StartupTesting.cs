@@ -7,6 +7,7 @@ using VisitPop.Application;
 using VisitPop.Infrastructure.Persistence;
 using VisitPop.Infrastructure.Persistence.Contexts;
 using VisitPop.Infrastructure.Persistence.Seeders;
+using VisitPop.Infrastructure.Shared;
 using VisitPop.WebApi.Extensions;
 
 namespace VisitPop.WebApi
@@ -27,7 +28,7 @@ namespace VisitPop.WebApi
             services.AddCordService("MyCorsPolicy");
             services.AddApplicationLayer();
             services.AddPersistenceInfrastructure(_config);
-            //TODO: services.AddSharedInfrastructure(_config);
+            services.AddSharedInfrastructure(_config);
             services.AddControllers()
                 .AddNewtonsoftJson();
             services.AddApiVersioningExtension();

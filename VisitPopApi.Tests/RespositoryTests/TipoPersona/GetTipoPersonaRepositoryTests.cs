@@ -29,15 +29,15 @@ namespace VisitPopApi.Tests.RespositoryTests.TipoPersona
             //  Act
             using (var context = new VisitPopDbContext(dbOptions))
             {
-                context.TipoPersonas.AddRange(fakeTipoPersona);
+                context.PersonTypes.AddRange(fakeTipoPersona);
                 context.SaveChanges();
 
-                var service = new TipoPersonaRepository(context, new SieveProcessor(sieveOptions));
+                var service = new PersonTypeRepository(context, new SieveProcessor(sieveOptions));
 
                 //  Assert
-                var tipoPersonaById = service.GetTipoPersona(fakeTipoPersona.Id);
+                var tipoPersonaById = service.GetPersonType(fakeTipoPersona.Id);
                 tipoPersonaById.Id.Should().Be(fakeTipoPersona.Id);
-                tipoPersonaById.Nombre.Should().Be(fakeTipoPersona.Nombre);
+                tipoPersonaById.Name.Should().Be(fakeTipoPersona.Name);
             }
         }
 
@@ -57,12 +57,12 @@ namespace VisitPopApi.Tests.RespositoryTests.TipoPersona
             //  Act
             using (var context = new VisitPopDbContext(dbOptions))
             {
-                context.TipoPersonas.AddRange(fakeTipoPersonaOne, fakeTipoPersonaTwo, fakeTipoPersonaThree);
+                context.PersonTypes.AddRange(fakeTipoPersonaOne, fakeTipoPersonaTwo, fakeTipoPersonaThree);
                 context.SaveChanges();
 
-                var service = new TipoPersonaRepository(context, new SieveProcessor(sieveOptions));
+                var service = new PersonTypeRepository(context, new SieveProcessor(sieveOptions));
 
-                var tipoPersonaRepo = await service.GetTipoPersonas(new TipoPersonaParametersDto());
+                var tipoPersonaRepo = await service.GetTipoPersonas(new PersonTypeParametersDto());
 
                 //  Assert
                 tipoPersonaRepo.Should()
@@ -96,12 +96,12 @@ namespace VisitPopApi.Tests.RespositoryTests.TipoPersona
             //  Act
             using (var context = new VisitPopDbContext(dbOptions))
             {
-                context.TipoPersonas.AddRange(fakeTipoPeronaOne, fakeTipoPeronaTwo, fakeTipoPeronaThree);
+                context.PersonTypes.AddRange(fakeTipoPeronaOne, fakeTipoPeronaTwo, fakeTipoPeronaThree);
                 context.SaveChanges();
 
-                var service = new TipoPersonaRepository(context, new SieveProcessor(sieveOptios));
+                var service = new PersonTypeRepository(context, new SieveProcessor(sieveOptios));
 
-                var tipoPersonaRepo = await service.GetTipoPersonas(new TipoPersonaParametersDto { PageSize = 2 });
+                var tipoPersonaRepo = await service.GetTipoPersonas(new PersonTypeParametersDto { PageSize = 2 });
 
                 //  Assert
                 tipoPersonaRepo.Should()
@@ -135,12 +135,12 @@ namespace VisitPopApi.Tests.RespositoryTests.TipoPersona
             //  Act
             using (var context = new VisitPopDbContext(dbOptions))
             {
-                context.TipoPersonas.AddRange(fakeTipoPersonaOne, fakeTipoPersonaTwo, fakeTipoPersonaThree);
+                context.PersonTypes.AddRange(fakeTipoPersonaOne, fakeTipoPersonaTwo, fakeTipoPersonaThree);
                 context.SaveChanges();
 
-                var service = new TipoPersonaRepository(context, new SieveProcessor(sieveOptions));
+                var service = new PersonTypeRepository(context, new SieveProcessor(sieveOptions));
 
-                var tipoPersonaRepo = await service.GetTipoPersonas(new TipoPersonaParametersDto { PageSize = 1, PageNumber = 2 });
+                var tipoPersonaRepo = await service.GetTipoPersonas(new PersonTypeParametersDto { PageSize = 1, PageNumber = 2 });
 
                 //  Assert
                 tipoPersonaRepo.Should()
@@ -174,12 +174,12 @@ namespace VisitPopApi.Tests.RespositoryTests.TipoPersona
             //  Act
             using (var context = new VisitPopDbContext(dbOptions))
             {
-                context.TipoPersonas.AddRange(fakeTipoPersonaOne, fakeTipoPersonaTwo, fakeTipoPersonaThree);
+                context.PersonTypes.AddRange(fakeTipoPersonaOne, fakeTipoPersonaTwo, fakeTipoPersonaThree);
                 context.SaveChanges();
 
-                var service = new TipoPersonaRepository(context, new SieveProcessor(sieveOptions));
+                var service = new PersonTypeRepository(context, new SieveProcessor(sieveOptions));
 
-                var tipoPersonaRepo = await service.GetTipoPersonas(new TipoPersonaParametersDto { SortOrder = "Id" });
+                var tipoPersonaRepo = await service.GetTipoPersonas(new PersonTypeParametersDto { SortOrder = "Id" });
 
                 //  Assert
                 tipoPersonaRepo.Should()
@@ -211,12 +211,12 @@ namespace VisitPopApi.Tests.RespositoryTests.TipoPersona
             //  Act
             using (var context = new VisitPopDbContext(dbOptions))
             {
-                context.TipoPersonas.AddRange(fakeTipoPersonaOne, fakeTipoPersonaTwo, fakeTipoPersonaThree);
+                context.PersonTypes.AddRange(fakeTipoPersonaOne, fakeTipoPersonaTwo, fakeTipoPersonaThree);
                 context.SaveChanges();
 
-                var service = new TipoPersonaRepository(context, new SieveProcessor(sieveOptions));
+                var service = new PersonTypeRepository(context, new SieveProcessor(sieveOptions));
 
-                var tipoPersonaRepo = await service.GetTipoPersonas(new TipoPersonaParametersDto { SortOrder = "-Id" });
+                var tipoPersonaRepo = await service.GetTipoPersonas(new PersonTypeParametersDto { SortOrder = "-Id" });
 
                 //  Assert
                 tipoPersonaRepo.Should()
@@ -236,23 +236,23 @@ namespace VisitPopApi.Tests.RespositoryTests.TipoPersona
             var sieveOptions = Options.Create(new SieveOptions());
 
             var fakeTipoPersonaOne = new FakeTipoPersona { }.Generate();
-            fakeTipoPersonaOne.Nombre = "bravo";
+            fakeTipoPersonaOne.Name = "bravo";
 
             var fakeTipoPersonaTwo = new FakeTipoPersona { }.Generate();
-            fakeTipoPersonaTwo.Nombre = "alpha";
+            fakeTipoPersonaTwo.Name = "alpha";
 
             var fakeTipoPersonaThree = new FakeTipoPersona { }.Generate();
-            fakeTipoPersonaThree.Nombre = "charlie";
+            fakeTipoPersonaThree.Name = "charlie";
 
             //  Act
             using (var context = new VisitPopDbContext(dbOptions))
             {
-                context.TipoPersonas.AddRange(fakeTipoPersonaOne, fakeTipoPersonaTwo, fakeTipoPersonaThree);
+                context.PersonTypes.AddRange(fakeTipoPersonaOne, fakeTipoPersonaTwo, fakeTipoPersonaThree);
                 context.SaveChanges();
 
-                var service = new TipoPersonaRepository(context, new SieveProcessor(sieveOptions));
+                var service = new PersonTypeRepository(context, new SieveProcessor(sieveOptions));
 
-                var tipoPersonaRepo = await service.GetTipoPersonas(new TipoPersonaParametersDto { SortOrder = "Nombre" });
+                var tipoPersonaRepo = await service.GetTipoPersonas(new PersonTypeParametersDto { SortOrder = "Nombre" });
 
                 //  Assert
                 tipoPersonaRepo.Should()
@@ -272,23 +272,23 @@ namespace VisitPopApi.Tests.RespositoryTests.TipoPersona
             var sieveOptions = Options.Create(new SieveOptions());
 
             var fakeTipoPersonaOne = new FakeTipoPersona { }.Generate();
-            fakeTipoPersonaOne.Nombre = "bravo";
+            fakeTipoPersonaOne.Name = "bravo";
 
             var fakeTipoPersonaTwo = new FakeTipoPersona { }.Generate();
-            fakeTipoPersonaTwo.Nombre = "alpha";
+            fakeTipoPersonaTwo.Name = "alpha";
 
             var fakeTipoPersonaThree = new FakeTipoPersona { }.Generate();
-            fakeTipoPersonaThree.Nombre = "charlie";
+            fakeTipoPersonaThree.Name = "charlie";
 
             //  Act
             using (var context = new VisitPopDbContext(dbOptions))
             {
-                context.TipoPersonas.AddRange(fakeTipoPersonaOne, fakeTipoPersonaTwo, fakeTipoPersonaThree);
+                context.PersonTypes.AddRange(fakeTipoPersonaOne, fakeTipoPersonaTwo, fakeTipoPersonaThree);
                 context.SaveChanges();
 
-                var service = new TipoPersonaRepository(context, new SieveProcessor(sieveOptions));
+                var service = new PersonTypeRepository(context, new SieveProcessor(sieveOptions));
 
-                var tipoPersonaRepo = await service.GetTipoPersonas(new TipoPersonaParametersDto { SortOrder = "-Nombre" });
+                var tipoPersonaRepo = await service.GetTipoPersonas(new PersonTypeParametersDto { SortOrder = "-Nombre" });
 
                 //  Assert
                 tipoPersonaRepo.Should()
@@ -319,12 +319,12 @@ namespace VisitPopApi.Tests.RespositoryTests.TipoPersona
             //  Act
             using (var context = new VisitPopDbContext(dbOptions))
             {
-                context.TipoPersonas.AddRange(fakeTipoPersonaOne, fakeTipoPersonaTwo, fakeTipoPersonaThree);
+                context.PersonTypes.AddRange(fakeTipoPersonaOne, fakeTipoPersonaTwo, fakeTipoPersonaThree);
                 context.SaveChanges();
 
-                var service = new TipoPersonaRepository(context, new SieveProcessor(sieveOptions));
+                var service = new PersonTypeRepository(context, new SieveProcessor(sieveOptions));
 
-                var tipoPersonaRepo = await service.GetTipoPersonas(new TipoPersonaParametersDto { Filters = $"Id == {fakeTipoPersonaTwo.Id}" });
+                var tipoPersonaRepo = await service.GetTipoPersonas(new PersonTypeParametersDto { Filters = $"Id == {fakeTipoPersonaTwo.Id}" });
 
                 //  Assert
                 tipoPersonaRepo.Should()
@@ -344,23 +344,23 @@ namespace VisitPopApi.Tests.RespositoryTests.TipoPersona
             var sieveOptions = Options.Create(new SieveOptions());
 
             var fakeTipoPersonaOne = new FakeTipoPersona { }.Generate();
-            fakeTipoPersonaOne.Nombre = "alpha";
+            fakeTipoPersonaOne.Name = "alpha";
 
             var fakeTipoPersonaTwo = new FakeTipoPersona { }.Generate();
-            fakeTipoPersonaTwo.Nombre = "bravo";
+            fakeTipoPersonaTwo.Name = "bravo";
 
             var fakeTipoPersonaThree = new FakeTipoPersona { }.Generate();
-            fakeTipoPersonaThree.Nombre = "charlie";
+            fakeTipoPersonaThree.Name = "charlie";
 
             //  Act
             using (var context = new VisitPopDbContext(dbOptions))
             {
-                context.TipoPersonas.AddRange(fakeTipoPersonaOne, fakeTipoPersonaTwo, fakeTipoPersonaThree);
+                context.PersonTypes.AddRange(fakeTipoPersonaOne, fakeTipoPersonaTwo, fakeTipoPersonaThree);
                 context.SaveChanges();
 
-                var service = new TipoPersonaRepository(context, new SieveProcessor(sieveOptions));
+                var service = new PersonTypeRepository(context, new SieveProcessor(sieveOptions));
 
-                var tipoPersonaRepo = await service.GetTipoPersonas(new TipoPersonaParametersDto { Filters = $"Nombre == {fakeTipoPersonaTwo.Nombre}" });
+                var tipoPersonaRepo = await service.GetTipoPersonas(new PersonTypeParametersDto { Filters = $"Nombre == {fakeTipoPersonaTwo.Name}" });
 
                 //  Assert
                 tipoPersonaRepo.Should()

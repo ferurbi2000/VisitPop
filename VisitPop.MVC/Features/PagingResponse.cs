@@ -1,5 +1,8 @@
 ﻿using Microsoft.CodeAnalysis;
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using VisitPop.Application.Dtos.EmployeeDepartment;
 using VisitPop.Application.Wrappers;
 
 namespace VisitPop.MVC.Features
@@ -11,5 +14,6 @@ namespace VisitPop.MVC.Features
 
         public string Filters { get; set; }
         public string SortOrder { get; set; }
+
     }
 }

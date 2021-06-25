@@ -39,7 +39,7 @@ namespace VisitPop.Domain.Entities
         public Persona Persona { get; set; }
 
         [ForeignKey("TipoVehiculoId")]
-        public TipoVehiculo TipoVehiculo { get; set; }
+        public VehicleType TipoVehiculo { get; set; }
 
         // add-on property marker - Do Not Delete This Comment
     }

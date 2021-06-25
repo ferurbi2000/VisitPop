@@ -15,11 +15,14 @@ namespace VisitPop.Domain.Common
         [Sieve(CanFilter = true, CanSort = true)]
         public int Id { get; set; }
         public string CreatedBy { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public DateTime? CreatedDate { get; set; }
         public string LastModifiedBy { get; set; }
         public DateTime? LastModified { get; set; }
+
+        [Sieve(CanFilter = true)]
         public bool IsActive { get; set; }
-        
+
+        [Sieve(CanFilter = true)]
         [DefaultValue(false)]
         public bool IsDeleted { get; set; }
     }

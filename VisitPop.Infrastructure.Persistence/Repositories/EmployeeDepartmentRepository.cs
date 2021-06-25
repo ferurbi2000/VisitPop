@@ -88,6 +88,7 @@ namespace VisitPop.Infrastructure.Persistence.Repositories
         public void UpdateEmployeeDepartment(EmployeeDepartment employeeDepartment)
         {
             // no implementation for now
+            _context.Entry(employeeDepartment).State = EntityState.Modified;
         }
 
         public bool Save()

@@ -32,6 +32,7 @@ namespace VisitPop.WebApi.Controllers.v1
                 throw new ArgumentNullException(nameof(mapper));
         }
 
+        
         [Consumes("application/json")]
         [Produces("application/json")]
         [HttpGet(Name = "GetEmployeeDepartments")]
@@ -60,6 +61,7 @@ namespace VisitPop.WebApi.Controllers.v1
 
             return Ok(response);
         }
+              
 
         [Produces("application/json")]
         [HttpGet("{Id}", Name = "GetEmployeeDepartment")]

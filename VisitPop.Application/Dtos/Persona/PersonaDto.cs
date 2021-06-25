@@ -1,5 +1,5 @@
-﻿using VisitPop.Application.Dtos.Empresa;
-using VisitPop.Application.Dtos.TipoPersona;
+﻿using VisitPop.Application.Dtos.Company;
+using VisitPop.Application.Dtos.PersonType;
 
 namespace VisitPop.Application.Dtos.Persona
 {
@@ -13,8 +13,8 @@ namespace VisitPop.Application.Dtos.Persona
         public int TipoPersonaId { get; set; }
         public int EmpresaId { get; set; }
         public string Email { get; set; }
-        public TipoPersonaDto TipoPersona { get; set; }
-        public EmpresaDto Empresa { get; set; }
+        public PersonTypeDto PersonType { get; set; }
+        public CompanyDto Empresa { get; set; }
 
         // add-on property marker - Do Not Delete This Comment
     }
