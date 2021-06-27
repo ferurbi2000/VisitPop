@@ -1,31 +1,30 @@
 ﻿@model FiltersAndPageSizeVm
 
 <div class="col-md-6 text-nowrap">
-    <div>
-        <label>
-            Show
-            <select name="pageSize" asp-for="@Model.PageSize" onchange="javascript:this.form.submit()"
-                    class="form-control form-control-sm custom-select custom-select-sm">
-                <option value="10" selected>10</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-            </select>
+    <label class="form-label">
+        Show
+        <select name="pageSize" asp-for="@Model.PageSize" onchange="javascript:this.form.submit()"
+                class="form-control form-control-sm custom-select custom-select-sm">
+            <option value="10" selected>10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+        </select>
 
-        </label>
-    </div>
+    </label>
 </div>
 
 <div class="col-md-6">
-    <div class="text-md-right">
-        <label>
+    <div class="text-md-end">
+        <label class="form-label">
+            &nbsp;
             <input name="filters" asp-for="@Model.Filter"
                    class="form-control form-control-sm" type="search"
                    placeholder="Search for ..."
                    onchange="javascript:this.form.submit()"
-                   data-toggle="tooltip"
-                   data-placement="top"
-                   data-html="true"
+                   data-bs-toggle="tooltip"                   
+                   data-bs-placement="top"
+                   data-bs-html="true"                   
                    title="<em>Search</em> <u>for</u> <b>@Model.ToolTip</b>" />
         </label>
     </div>

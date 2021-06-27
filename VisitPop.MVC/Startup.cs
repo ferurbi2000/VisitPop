@@ -7,6 +7,7 @@ using VisitPop.MVC.Services.Company;
 using VisitPop.MVC.Services.Employee;
 using VisitPop.MVC.Services.EmployeeDepartment;
 using VisitPop.MVC.Services.Office;
+using VisitPop.MVC.Services.Person;
 using VisitPop.MVC.Services.PersonType;
 using VisitPop.MVC.Services.RegisterControl;
 using VisitPop.MVC.Services.VehicleType;
@@ -37,6 +38,7 @@ namespace VisitPop.MVC
             services.AddScoped<IVehicleTypeRepository, VehicleTypeRepository>();
             services.AddScoped<IVisitTypeRepository, VisitTypeRepository>();
             services.AddScoped<IRegisterControlRepository, RegisterControlRepository>();
+            services.AddScoped<IPersonRepository, PersonRepository>();
 
             services.AddMvc();
 

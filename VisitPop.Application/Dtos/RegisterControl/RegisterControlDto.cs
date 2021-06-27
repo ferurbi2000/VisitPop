@@ -17,7 +17,7 @@ namespace VisitPop.Application.Dtos.RegisterControl
         [StringLength(VisitEntityConstants.MAX_ADDRESS_LENGTH)]
         public string Location { get; set; }
 
-        [StringLength(VisitEntityConstants.MAX_NOTES_LENGTH)]
+        [StringLength(VisitEntityConstants.MAX_NOTES_LENGTH)]        
         public string Description { get; set; }
 
         // add-on property marker - Do Not Delete This Comment

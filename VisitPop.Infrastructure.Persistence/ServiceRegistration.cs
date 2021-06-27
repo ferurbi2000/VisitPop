@@ -7,7 +7,7 @@ using VisitPop.Application.Interfaces.Employee;
 using VisitPop.Application.Interfaces.EmployeeDepartment;
 using VisitPop.Application.Interfaces.Observacion;
 using VisitPop.Application.Interfaces.Office;
-using VisitPop.Application.Interfaces.Persona;
+using VisitPop.Application.Interfaces.Person;
 using VisitPop.Application.Interfaces.PersonType;
 using VisitPop.Application.Interfaces.RegisterControl;
 using VisitPop.Application.Interfaces.VisitType;
@@ -54,7 +54,7 @@ namespace VisitPop.Infrastructure.Persistence
             service.AddScoped<IPersonTypeRepository, PersonTypeRepository>();
             service.AddScoped<IVehicleTypeRepository, VehicleTypeRepository>();
             service.AddScoped<IVisitTypeRepository, VisitTypeRepository>();
-            service.AddScoped<IPersonaRepository, PersonaRepository>();
+            service.AddScoped<IPersonRepository, PersonRepository>();
 
             service.AddScoped<IVisitaRepository, VisitaRepository>();
             service.AddScoped<IVisitaPersonaRepository, VisitaPersonaRepository>();

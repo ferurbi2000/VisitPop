@@ -59,7 +59,7 @@ namespace VisitPop.WebApi
                 PersonTypeSeeder.PersonTypeSampleData(app.ApplicationServices.GetService<VisitPopDbContext>());
                 VehicleTypeSeeder.VehicleTypeSampleData(app.ApplicationServices.GetService<VisitPopDbContext>());
                 VisitTypeSeeder.VisitTypeSampleData(app.ApplicationServices.GetService<VisitPopDbContext>());
-                PersonaSeeder.PersonaSampleData(app.ApplicationServices.GetService<VisitPopDbContext>());
+                PersonSeeder.PersonSampleData(app.ApplicationServices.GetService<VisitPopDbContext>());
 
                 VisitaSeeder.SeedSampleVisitaData(app.ApplicationServices.GetService<VisitPopDbContext>());
                 VisitaPersonaSeeder.VisitPersonaSampleData(app.ApplicationServices.GetService<VisitPopDbContext>());

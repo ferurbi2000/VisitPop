@@ -27,27 +27,27 @@
 
                     <div class="row">
                         <div class="col-md-3 position-relative">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label asp-for="RegisterControl.Id"></label>
                                 <input class="form-control form-control-sm" asp-for="RegisterControl.Id" readonly />
                             </div>
                         </div>
-                    </div>
+                    </div>                    
 
                     <div class="row">
                         <div class="col-md position-relative">
-                            <div class="form-group">
+                            <div class="form-floating mb-3">
+                                <input class="form-control" asp-for="RegisterControl.Name" readonly="@Model.ReadOnly" placeholder="Name">
                                 <label asp-for="RegisterControl.Name"></label>
-                                <input class="form-control form-control-sm" asp-for="RegisterControl.Name" readonly="@Model.ReadOnly" />
                                 <div>
                                     <span asp-validation-for="RegisterControl.Name" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md position-relative">
-                            <div class="form-group">
+                            <div class="form-floating mb-3">
+                                <input class="form-control" asp-for="RegisterControl.Location" readonly="@Model.ReadOnly" placeholder="Location">
                                 <label asp-for="RegisterControl.Location"></label>
-                                <input class="form-control form-control-sm" asp-for="RegisterControl.Location" readonly="@Model.ReadOnly" />
                                 <div>
                                     <span asp-validation-for="RegisterControl.Location" class="text-danger"></span>
                                 </div>
@@ -57,16 +57,15 @@
 
                     <div class="row">
                         <div class="col-md position-relative">
-                            <div class="form-group">
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control form-control-sm" asp-for="RegisterControl.Description" readonly="@Model.ReadOnly" placeholder="Description" style="height: 100px"></textarea>
                                 <label asp-for="RegisterControl.Description"></label>
-                                <input class="form-control form-control-sm" asp-for="RegisterControl.Description" readonly="@Model.ReadOnly" />
                                 <div>
                                     <span asp-validation-for="RegisterControl.Description" class="text-danger"></span>
                                 </div>
                             </div>
-                        </div>                        
+                        </div>
                     </div>
-                    
 
                     @if (Model.ShowAction)
                     {
@@ -78,8 +77,8 @@
                             </a>
                         }
 
-                        <button id="btnFetch" class="btn btn-sm btn-@Model.Theme" type="submit">
-                            <i class="far fa-save fa-lg text-white-50"></i>
+                        <button id="btnFetch" class="btn btn-sm btn-@Model.Theme text-white" type="submit">
+                            <i class="fas fa-save fa-lg text-white-50"></i>
                             @Model.Action
                         </button>
                     }
@@ -88,6 +87,7 @@
                         <i class="fas fa-times fa-lg text-white-50"></i>
                         Close
                     </a>
+
                 </form>
 
             </div>

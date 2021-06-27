@@ -36,7 +36,7 @@ namespace VisitPop.Domain.Entities
         public Visita Visita { get; set; }
 
         [ForeignKey("PersonaId")]
-        public Persona Persona { get; set; }
+        public Person Persona { get; set; }
 
         [ForeignKey("TipoVehiculoId")]
         public VehicleType TipoVehiculo { get; set; }

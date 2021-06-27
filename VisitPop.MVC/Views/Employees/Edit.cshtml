@@ -22,12 +22,12 @@
 
                 <form id="editForm" asp-action="@Model.Action" method="post">
                     <div class="form-group">
-                        <input class="form-control" asp-for="ReturnUrl" hidden />                                 
+                        <input class="form-control" asp-for="ReturnUrl" hidden />
                     </div>
 
                     <div class="row">
                         <div class="col-md-3 position-relative">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label asp-for="Employee.Id"></label>
                                 <input class="form-control form-control-sm" asp-for="Employee.Id" readonly />
                             </div>
@@ -36,18 +36,18 @@
 
                     <div class="row">
                         <div class="col-md position-relative">
-                            <div class="form-group">
+                            <div class="form-floating mb-3">
+                                <input class="form-control form-control-sm" asp-for="Employee.FirstName" readonly="@Model.ReadOnly" placeholder="FirstName" />
                                 <label asp-for="Employee.FirstName"></label>
-                                <input class="form-control form-control-sm" asp-for="Employee.FirstName" readonly="@Model.ReadOnly" />
                                 <div>
                                     <span asp-validation-for="Employee.FirstName" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md position-relative">
-                            <div class="form-group">
+                            <div class="form-floating mb-3">
+                                <input class="form-control form-control-sm" asp-for="Employee.LastName" readonly="@Model.ReadOnly" placeholder="LastName" />
                                 <label asp-for="Employee.LastName"></label>
-                                <input class="form-control form-control-sm" asp-for="Employee.LastName" readonly="@Model.ReadOnly" />
                                 <div>
                                     <span asp-validation-for="Employee.LastName" class="text-danger"></span>
                                 </div>
@@ -57,18 +57,18 @@
 
                     <div class="row">
                         <div class="col-md position-relative">
-                            <div class="form-group">
+                            <div class="form-floating mb-3">
+                                <input class="form-control form-control-sm" asp-for="Employee.DocId" readonly="@Model.ReadOnly" placeholder="DocId" />
                                 <label asp-for="Employee.DocId"></label>
-                                <input class="form-control form-control-sm" asp-for="Employee.DocId" readonly="@Model.ReadOnly" />
                                 <div>
                                     <span asp-validation-for="Employee.DocId" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md position-relative">
-                            <div class="form-group">
+                            <div class="form-floating mb-3">
+                                <input class="form-control form-control-sm" asp-for="Employee.PhoneNumber" readonly="@Model.ReadOnly" placeholder="Phone Number" />
                                 <label asp-for="Employee.PhoneNumber"></label>
-                                <input class="form-control form-control-sm" asp-for="Employee.PhoneNumber" readonly="@Model.ReadOnly" />
                                 <div>
                                     <span asp-validation-for="Employee.PhoneNumber" class="text-danger"></span>
                                 </div>
@@ -78,9 +78,9 @@
 
                     <div class="row">
                         <div class="col-md position-relative">
-                            <div class="form-group">
+                            <div class="form-floating mb-3">
+                                <input class="form-control form-control-sm" asp-for="Employee.EmailAddress" readonly="@Model.ReadOnly" placeholder="Email Address" />
                                 <label asp-for="Employee.EmailAddress"></label>
-                                <input class="form-control form-control-sm" asp-for="Employee.EmailAddress" readonly="@Model.ReadOnly" />
                                 <div>
                                     <span asp-validation-for="Employee.EmailAddress" class="text-danger"></span>
                                 </div>
@@ -88,28 +88,16 @@
                         </div>
 
                         <div class="col-md position-relative">
-
-                            <label asp-for="Employee.EmployeeDepartmentId">Department</label>
-
-                            <div class="input-group input-group-sm">
-                                <select asp-for="Employee.EmployeeDepartmentId" class="form-control" disabled="@Model.ReadOnly"
+                            <div class="form-floating mb-3">
+                                <select asp-for="Employee.EmployeeDepartmentId" class="form-select" disabled="@Model.ReadOnly"
                                         asp-items="@(new SelectList(Model.EmployeeDepartment, "Id", "Name"))">
                                     <option value="" disabled selected>Choose a Department</option>
                                 </select>
-                                @*<div class="input-group-append">      
-                                    <input type="hidden" name="returnUrl" value="@Model.Action" />
-                                    <button asp-controller="EmployeeDepartments" asp-action="Create"
-                                            formmethod="get" formnovalidate
-                                            class="btn btn-secondary" data-toggle="tooltip" title="Add New Department" disabled="@Model.ReadOnly">
-                                        <i class="fas fa-plus fa-sm text-white-50"></i>
-                                    </button>
-                                </div>*@
+                                <label asp-for="Employee.EmployeeDepartmentId">Department</label>
+                                <div>
+                                    <span asp-validation-for="Employee.EmployeeDepartmentId" class="text-danger"></span>
+                                </div>
                             </div>
-
-                            <div>
-                                <span asp-validation-for="Employee.EmployeeDepartmentId" class="text-danger"></span>
-                            </div>
-
                         </div>
                     </div>
 
@@ -123,8 +111,8 @@
                             </a>
                         }
 
-                        <button id="btnFetch" class="btn btn-sm btn-@Model.Theme" type="submit">
-                            <i class="far fa-save fa-lg text-white-50"></i>
+                        <button id="btnFetch" class="btn btn-sm btn-@Model.Theme text-white" type="submit">
+                            <i class="fas fa-save fa-lg text-white-50"></i>
                             @Model.Action
                         </button>
                     }
@@ -142,7 +130,7 @@
     </div>
 
     <div class="col-lg-4 col-xl-3">
-        <vc:edit-audit entity=@Model.Employee/>        
+        <vc:edit-audit entity=@Model.Employee />
     </div>
 </div>
 

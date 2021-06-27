@@ -24,7 +24,7 @@ namespace VisitPop.MVC.Components
                 new MenuInfo{ Nombre="Companies", Controller="Companies", Action="Index", IconClass="fas fa-building" },
                 new MenuInfo{ Nombre="Visit States", Controller="VisitStates", Action="Index", IconClass="far fa-calendar" },
                 new MenuInfo{ Nombre="Offices", Controller="Offices", Action="Index", IconClass="fas fa-sitemap" },
-                new MenuInfo{ Nombre="Personas", Controller="Personas", Action="Index", IconClass="fas fa-street-view" },
+                new MenuInfo{ Nombre="Persons", Controller="Persons", Action="Index", IconClass="fas fa-street-view" },
                 new MenuInfo{ Nombre="Register Controls", Controller="RegisterControls", Action="Index", IconClass="fas fa-user-shield" },
                 new MenuInfo{ Nombre="Person Types", Controller="PersonTypes", Action="Index", IconClass="far fa-calendar" },
                 new MenuInfo{ Nombre="Vehicle Types", Controller="VehicleTypes", Action="Index", IconClass="fas fa-car-side" },

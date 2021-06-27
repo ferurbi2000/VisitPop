@@ -27,7 +27,7 @@
 
                     <div class="row">
                         <div class="col-md-3 position-relative">
-                            <div class="form-group">
+                            <div class="mb-3">
                                 <label asp-for="VisitType.Id"></label>
                                 <input class="form-control form-control-sm" asp-for="VisitType.Id" readonly />
                             </div>
@@ -36,9 +36,9 @@
 
                     <div class="row">
                         <div class="col-md position-relative">
-                            <div class="form-group">
+                            <div class="form-floating mb-3">
+                                <input class="form-control form-control-sm" asp-for="VisitType.Name" readonly="@Model.ReadOnly" placeholder="Name" />
                                 <label asp-for="VisitType.Name"></label>
-                                <input class="form-control form-control-sm" asp-for="VisitType.Name" readonly="@Model.ReadOnly" />
                                 <div>
                                     <span asp-validation-for="VisitType.Name" class="text-danger"></span>
                                 </div>
@@ -56,8 +56,8 @@
                             </a>
                         }
 
-                        <button id="btnFetch" class="btn btn-sm btn-@Model.Theme" type="submit">
-                            <i class="far fa-save fa-lg text-white-50"></i>
+                        <button id="btnFetch" class="btn btn-sm btn-@Model.Theme text-white" type="submit">
+                            <i class="fas fa-save fa-lg text-white-50"></i>
                             @Model.Action
                         </button>
                     }
