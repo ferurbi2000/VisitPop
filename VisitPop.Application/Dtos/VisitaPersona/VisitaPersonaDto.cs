@@ -1,7 +1,7 @@
 ﻿using System;
 using VisitPop.Application.Dtos.Person;
 using VisitPop.Application.Dtos.VehicleType;
-using VisitPop.Application.Dtos.Visita;
+using VisitPop.Application.Dtos.Visit;
 
 namespace VisitPop.Application.Dtos.VisitaPersona
 {
@@ -14,7 +14,7 @@ namespace VisitPop.Application.Dtos.VisitaPersona
         public string Placa { get; set; }
         public DateTime? FechaIngresa { get; set; }
         public DateTime? FechaSalida { get; set; }
-        public VisitaDto Visita { get; set; }
+        public VisitDto Visita { get; set; }
         public PersonDto Person { get; set; }
         public VehicleTypeDto VehicleType { get; set; }
 

@@ -19,7 +19,7 @@ namespace VisitPop.Domain.Entities
         public string Nota { get; set; }
 
         [ForeignKey("VisitaId")]
-        public Visita Visita { get; set; }
+        public Visit Visita { get; set; }
 
         // add-on property marker - Do Not Delete This Comment
     }

@@ -1,0 +1,167 @@
+﻿@model PagingResponse<VisitDto>
+
+@{
+    ViewData["Title"] = "Visits";
+
+    var selectIndex = (int)ViewBag.pageSize;
+    var filter = ViewBag.filter;
+}
+
+@if (TempData["message"] != null)
+{
+    <vc:toaster message=@TempData["message"] , toaster-type="@((ToasterType)TempData["toasterType"])" />
+}
+
+<div class="d-sm-flex justify-content-between align-items-center mb-4">
+
+    <h3 class="text-dark mb-0">@ViewData["Title"]</h3>
+
+    <a id="btnAdd" asp-action="Create" class="btn btn-primary btn-sm d-none d-sm-inline-block shadow-sm">
+        <i class="fas fa-plus fa-sm text-white-50"></i>
+        Add Visit
+    </a>
+
+</div>
+
+<div class="card shadow">
+
+    <div class="card-header align-items-center pb-0">
+        <form method="get">
+            <div class="row">
+                <vc:filters-and-page-size page-size="@Model.Metadata.PageSize"
+                                          filter="@filter"
+                                          tool-tip="Reason|Company|Email" />
+            </div>
+        </form>
+    </div>
+
+    <div class="card-body">
+
+        <div class="row align-items-center">
+            <vc:pagination values="@Model.Metadata" filters="@Model.Filters" sort-order="@Model.SortOrder" />
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @foreach (var p in Model.Items)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        @*<div class="card-header d-flex justify-content-between align-items-center">
+                                <h6 class="text-secondary fw-bold m-0">
+                                    @p.Employee.FullName
+                                </h6>
+
+                                <div class="dropdown no-arrow">
+                                    <button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown">
+                                        <i class="fas fa-ellipsis-v text-gray-400"></i>
+                                    </button>
+                                    <div class="dropdown-menu shadow  animated--fade-in">
+                                        <p class="text-left dropdown-header">Actions:</p>
+                                        <a class="dropdown-item" asp-action="Edit" asp-route-id="@p.Id">
+                                            <i class="fas fa-pen fa-sm fa-fw me-2 text-gray-500"></i>
+                                            Edit
+                                        </a>
+                                        <a class="dropdown-item" asp-action="Delete" asp-route-id="@p.Id">
+                                            <i class="fas fa-trash fa-sm fa-fw me-2 text-danger"></i>
+                                            Delete
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" asp-action="Details" asp-route-id="@p.Id">
+                                            <i class="far fa-list-alt fa-sm fa-fw me-2 text-gray-500"></i>
+                                            Details
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>*@
+
+                        <div class="card-body">
+                            <div class="row align-items-center no-gutters">
+                                <div class="col me-2">
+                                    <div class="text-uppercase text-primary fw-bold text-xs mb-1">
+                                        @*<span>Earnings(montthly)</span>*@
+                                        <span>@p.Employee.FullName</span>
+                                    </div>
+                                    @*<div class="text-dark fw-bold h5 mb-0">
+                                        <span>c$ 40,000</span>                                        
+                                    </div>*@
+                                </div>
+                                <div class="col-auto">
+                                    @*<i class="fas fa-calendar fa-2x text-gray-300"></i>*@
+
+                                    <div class="dropdown no-arrow">
+                                        <button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown">
+                                            <i class="fas fa-ellipsis-v text-gray-400"></i>
+                                        </button>
+                                        <div class="dropdown-menu shadow  animated--fade-in">
+                                            <p class="text-left dropdown-header">Actions:</p>
+                                            <a class="dropdown-item" asp-action="Edit" asp-route-id="@p.Id">
+                                                <i class="fas fa-pen fa-sm fa-fw me-2 text-gray-500"></i>
+                                                Edit
+                                            </a>
+                                            <a class="dropdown-item" asp-action="Delete" asp-route-id="@p.Id">
+                                                <i class="fas fa-trash fa-sm fa-fw me-2 text-danger"></i>
+                                                Delete
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" asp-action="Details" asp-route-id="@p.Id">
+                                                <i class="far fa-list-alt fa-sm fa-fw me-2 text-gray-500"></i>
+                                                Details
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row align-items-center no-gutters">
+                                <div class="col me-2">
+                                    <div class="text-uppercase text-info fw-bold text-xs mb-1">
+                                        @*<span>Tasks</span>*@
+                                        <span>@p.VisitState.Name</span>
+                                    </div>
+                                    <div class="row g-0 align-items-center">
+                                        <div class="col-auto">
+                                            <div class="text-dark fw-bold h5 mb-0 me-3">
+                                                <span>30%</span>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="progress progress-sm">
+                                                <div class="progress-bar bg-success" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
+                                                    <span class="visually-hidden">30%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-clipboard-list fa-2x text-primary"></i>
+                                </div>
+                            </div>
+
+                            @*<p class="card-title">Id: @p.Id</p>*@
+                            <p class="card-text">Reason: @p.Reason</p>
+                            <p class="card-text">State: @p.VisitState.Name</p>
+                            <p class="card-text">Visit Type: @p.VisitType.Name</p>
+                            <p class="card-text">Appointment Date: @p.AppointmentDate</p>
+
+                            @*<div class="progress">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>*@
+
+                            @*<a href="#" class="btn btn-primary">Go somewhere</a>*@
+                        </div>
+                        @*<div class="card-footer">
+                                <small class="text-muted">Last updated 3 mins ago</small>
+                            </div>*@
+                    </div>
+                </div>
+            }
+
+        </div>
+
+        <div class="row">
+            <vc:pagination values="@Model.Metadata" filters="@Model.Filters" sort-order="@Model.SortOrder" />
+        </div>
+
+    </div>
+</div>

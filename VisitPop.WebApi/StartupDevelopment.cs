@@ -61,7 +61,7 @@ namespace VisitPop.WebApi
                 VisitTypeSeeder.VisitTypeSampleData(app.ApplicationServices.GetService<VisitPopDbContext>());
                 PersonSeeder.PersonSampleData(app.ApplicationServices.GetService<VisitPopDbContext>());
 
-                VisitaSeeder.SeedSampleVisitaData(app.ApplicationServices.GetService<VisitPopDbContext>());
+                VisitSeeder.SeedSampleVisitData(app.ApplicationServices.GetService<VisitPopDbContext>());
                 VisitaPersonaSeeder.VisitPersonaSampleData(app.ApplicationServices.GetService<VisitPopDbContext>());
 
                 #endregion

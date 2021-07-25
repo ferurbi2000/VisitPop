@@ -39,8 +39,8 @@ namespace VisitPop.Application.Dtos.Employee
 
         //public EmployeeDepartmentDto EmployeeDepartment { get; set; }
 
-        //[Display(Name = "Full Name")]
-        //public string FullName => $"{FirstName} {LastName}";
+        [Display(Name = "Full Name")]
+        public string FullName => $"{LastName}, {FirstName}";
 
 
         // add-on property marker - Do Not Delete This Comment

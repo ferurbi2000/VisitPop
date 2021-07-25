@@ -1,0 +1,182 @@
+﻿@model VisitViewModel
+
+@if (TempData["message"] != null)
+{
+    <vc:toaster message=@TempData["message"] , toaster-type="@((ToasterType)TempData["toasterType"])" />
+}
+
+<div class="d-sm-flex justify-content-between align-items-center mb-4">
+    <h3 class="text-dark mb-0">Visit</h3>
+</div>
+
+<div class="row">
+    <div class="col-lg-8 col-xl-9">
+
+        <div class="card shadow mb-4">
+
+            <div class="card-header">
+                <p class="text-black-50 m-0 font-weight-bold">@Model.Action</p>
+            </div>
+
+            <div class="card-body">
+
+                <form id="editForm" asp-action="@Model.Action" method="post">
+                    <div class="form-group">
+                        <input class="form-control" asp-for="ReturnUrl" hidden />
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3 position-relative">
+                            <div class="mb-3">
+                                <label asp-for="Visit.Id"></label>
+                                <input class="form-control form-control-sm" asp-for="Visit.Id" readonly />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md position-relative">
+                            <div class="form-floating mb-3">
+                                <select asp-for="Visit.RegisterControlId" class="form-select" disabled="@Model.ReadOnly"
+                                        asp-items="@(new SelectList(Model.RegisterControls, "Id", "Name"))">
+                                    <option value="" disabled selected>Choose a Register Control</option>
+                                </select>
+                                <label asp-for="Visit.RegisterControlId">Register Control</label>
+                                <div>
+                                    <span asp-validation-for="Visit.RegisterControlId" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md position-relative">
+                            <div class="form-floating mb-3">
+                                <select asp-for="Visit.VisitTypeId" class="form-select" disabled="@Model.ReadOnly"
+                                        asp-items="@(new SelectList(Model.VisitTypes, "Id", "Name"))">
+                                    <option value="" disabled selected>Choose a Visit Type</option>
+                                </select>
+                                <label asp-for="Visit.VisitTypeId">Visit Type</label>
+                                <div>
+                                    <span asp-validation-for="Visit.VisitTypeId" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md position-relative">
+                            <div class="form-floating mb-3">
+                                <select asp-for="Visit.VisitStateId" class="form-select" disabled="@Model.ReadOnly"
+                                        asp-items="@(new SelectList(Model.VisitStates, "Id", "Name"))">
+                                    <option value="" disabled selected>Choose a Visit State</option>
+                                </select>
+                                <label asp-for="Visit.VisitStateId">Visit State</label>
+                                <div>
+                                    <span asp-validation-for="Visit.VisitStateId" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md position-relative">
+                            <div class="form-floating mb-3">
+                                <input class="form-control form-control-sm" asp-for="Visit.Reason" readonly="@Model.ReadOnly" placeholder="Reason" />
+                                <label asp-for="Visit.Reason"></label>
+                                <div>
+                                    <span asp-validation-for="Visit.Reason" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-md position-relative">
+                            <div class="form-floating mb-3">
+                                <input class="form-control form-control-sm" asp-for="Visit.Company" readonly="@Model.ReadOnly" placeholder="Company" />
+                                <label asp-for="Visit.Company"></label>
+                                <div>
+                                    <span asp-validation-for="Visit.Company" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md position-relative">
+                            <div class="form-floating mb-3">
+                                <select asp-for="Visit.EmployeeId" class="form-select" disabled="@Model.ReadOnly"
+                                        asp-items="@(new SelectList(Model.Employees, "Id", "FullName"))">
+                                    <option value="" disabled selected>Choose a Employee</option>
+                                </select>
+                                <label asp-for="Visit.EmployeeId">Employee</label>
+                                <div>
+                                    <span asp-validation-for="Visit.EmployeeId" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md position-relative">
+                            <div class="form-floating mb-3">
+                                <select asp-for="Visit.OfficeId" class="form-select" disabled="@Model.ReadOnly"
+                                        asp-items="@(new SelectList(Model.Offices, "Id", "Name"))">
+                                    <option value="" disabled selected>Choose a Office</option>
+                                </select>
+                                <label asp-for="Visit.OfficeId">Office</label>
+                                <div>
+                                    <span asp-validation-for="Visit.OfficeId" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        
+
+                        @*<div class="col-md position-relative">
+                            
+                        </div>*@
+
+                        <div class="col-md-4 position-relative">
+                            <div class="form-check form-switch">
+                                <input asp-for="Visit.IsAppointment" class="form-check-input" type="checkbox" disabled ="@Model.ReadOnly">
+                                <label asp-for="Visit.IsAppointment" class="form-check-label"></label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control form-control-sm" type="date" asp-for="Visit.AppointmentDate" readonly="@Model.ReadOnly" placeholder="Appointment Date" />
+                                <label asp-for="Visit.AppointmentDate"></label>
+                                <div>
+                                    <span asp-validation-for="Visit.AppointmentDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    @if (Model.ShowAction)
+                    {
+                        @if (Model.ShowCreateNewAction)
+                        {
+                            <a asp-action="Create" class="btn btn-sm btn-primary" asp-route-returnurl="@Model.ReturnUrl">
+                                <i class="fas fa-plus fa-lg text-white-50"></i>
+                                Create New
+                            </a>
+                        }
+
+                        <button id="btnFetch" class="btn btn-sm btn-@Model.Theme text-white" type="submit">
+                            <i class="fas fa-save fa-lg text-white-50"></i>
+                            @Model.Action
+                        </button>
+                    }
+
+                    <a class="btn btn-sm btn-secondary" href="@Model.ReturnUrl">
+                        <i class="fas fa-times fa-lg text-white-50"></i>
+                        Close
+                    </a>
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-4 col-xl-3">
+        <vc:edit-audit entity=@Model.Visit />
+    </div>
+</div>

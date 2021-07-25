@@ -11,6 +11,7 @@ using VisitPop.MVC.Services.Person;
 using VisitPop.MVC.Services.PersonType;
 using VisitPop.MVC.Services.RegisterControl;
 using VisitPop.MVC.Services.VehicleType;
+using VisitPop.MVC.Services.Visit;
 using VisitPop.MVC.Services.VisitState;
 using VisitPop.MVC.Services.VisitType;
 
@@ -39,6 +40,7 @@ namespace VisitPop.MVC
             services.AddScoped<IVisitTypeRepository, VisitTypeRepository>();
             services.AddScoped<IRegisterControlRepository, RegisterControlRepository>();
             services.AddScoped<IPersonRepository, PersonRepository>();
+            services.AddScoped<IVisitRepository, VisitRepository>();
 
             services.AddMvc();
 

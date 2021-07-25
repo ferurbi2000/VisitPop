@@ -33,7 +33,7 @@ namespace VisitPop.Domain.Entities
         public DateTime? FechaSalida { get; set; }
 
         [ForeignKey("VisitaId")]
-        public Visita Visita { get; set; }
+        public Visit Visita { get; set; }
 
         [ForeignKey("PersonaId")]
         public Person Persona { get; set; }

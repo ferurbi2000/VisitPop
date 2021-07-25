@@ -18,7 +18,7 @@ namespace VisitPop.MVC.Components
 
             List <MenuInfo> menu = new List<MenuInfo> {
                 new MenuInfo{ Nombre="Dashboard", Controller="Home", Action="Index", IconClass="fas fa-tachometer-alt" },
-                new MenuInfo{ Nombre="Visitas", Controller="Visitas", Action="Index", IconClass="fas fa-id-card" },
+                new MenuInfo{ Nombre="Visits", Controller="Visits", Action="Index", IconClass="fas fa-id-card" },
                 new MenuInfo{ Nombre="Employee Departments", Controller="EmployeeDepartments", Action="Index", IconClass="far fa-calendar" },
                 new MenuInfo{ Nombre="Employees", Controller="Employees", Action="Index", IconClass="fas fa-users" },
                 new MenuInfo{ Nombre="Companies", Controller="Companies", Action="Index", IconClass="fas fa-building" },
