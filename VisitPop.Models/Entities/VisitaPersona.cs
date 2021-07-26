@@ -42,5 +42,8 @@ namespace VisitPop.Domain.Entities
         public VehicleType TipoVehiculo { get; set; }
 
         // add-on property marker - Do Not Delete This Comment
+
+        //Pertenencias
+
     }
 }

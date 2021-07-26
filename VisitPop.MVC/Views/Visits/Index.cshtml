@@ -77,13 +77,13 @@
                         <div class="card-body">
                             <div class="row align-items-center no-gutters">
                                 <div class="col me-2">
-                                    <div class="text-uppercase text-primary fw-bold text-xs mb-1">
+                                    <div class="text-uppercase text-primary fw-bold text-md-start mb-1">
                                         @*<span>Earnings(montthly)</span>*@
                                         <span>@p.Employee.FullName</span>
                                     </div>
                                     @*<div class="text-dark fw-bold h5 mb-0">
-                                        <span>c$ 40,000</span>                                        
-                                    </div>*@
+                                            <span>c$ 40,000</span>
+                                        </div>*@
                                 </div>
                                 <div class="col-auto">
                                     @*<i class="fas fa-calendar fa-2x text-gray-300"></i>*@
@@ -138,21 +138,42 @@
                                 </div>
                             </div>
 
+                            <br />
+
                             @*<p class="card-title">Id: @p.Id</p>*@
-                            <p class="card-text">Reason: @p.Reason</p>
-                            <p class="card-text">State: @p.VisitState.Name</p>
+
+                            @*<p class="card-text">State: @p.VisitState.Name</p>*@
+
                             <p class="card-text">Visit Type: @p.VisitType.Name</p>
-                            <p class="card-text">Appointment Date: @p.AppointmentDate</p>
+
+                            <p class="card-text">Reason: @p.Reason</p>
+
+                            @*<p class="card-text">Appointment Date: @p.AppointmentDate</p>*@
+
+                            @*<p class="card-text">Created: @p.CreatedDate</p>*@
 
                             @*<div class="progress">
                                     <div class="progress-bar bg-success" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>*@
 
                             @*<a href="#" class="btn btn-primary">Go somewhere</a>*@
+
+
+
                         </div>
-                        @*<div class="card-footer">
-                                <small class="text-muted">Last updated 3 mins ago</small>
-                            </div>*@
+                        <div class="card-footer">
+                            <div class="row align-items-center no-gutters">
+                                <div class="col me-2">
+                                    <i class="far fa-calendar-alt text-gray-500"></i>
+                                    <small class="text-muted">Created: @String.Format("{0:d MMMM, yyyy}", p.CreatedDate)</small>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="far fa-clock fa-sm text-gray-500"></i>
+                                    <small class="text-muted">@String.Format("{0:HH:mm:ss}", p.CreatedDate)</small>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             }
