@@ -13,7 +13,7 @@ using VisitPop.Application.Interfaces.RegisterControl;
 using VisitPop.Application.Interfaces.VisitType;
 using VisitPop.Application.Interfaces.VehicleType;
 using VisitPop.Application.Interfaces.Visit;
-using VisitPop.Application.Interfaces.VisitaPersona;
+using VisitPop.Application.Interfaces.VisitPerson;
 using VisitPop.Application.Interfaces.VisitState;
 using VisitPop.Infrastructure.Persistence.Contexts;
 using VisitPop.Infrastructure.Persistence.Repositories;
@@ -57,7 +57,7 @@ namespace VisitPop.Infrastructure.Persistence
             service.AddScoped<IPersonRepository, PersonRepository>();
 
             service.AddScoped<IVisitRepository, VisitRepository>();
-            service.AddScoped<IVisitaPersonaRepository, VisitaPersonaRepository>();
+            service.AddScoped<IVisitPersonRepository, VisitPersonRepository>();
 
             #endregion
         }

@@ -56,13 +56,15 @@ namespace VisitPop.Infrastructure.Persistence.Repositories
         public async Task<Visit> GetVisitAsync(int id)
         {
             // include marker -- requires return _context.Visitas as it's own line with no extra text -- do not delete this comment
-            return await _context.Visits
+            return await _context.Visits                
                 .Include(t => t.VisitType)
                 .Include(e => e.Employee)
                 .Include(o => o.Office)
                 .Include(p => p.RegisterControl)
-                .Include(e => e.VisitState)
+                .Include(e => e.VisitState)                
                 .FirstOrDefaultAsync(v => v.Id == id);
+
+
         }
 
         public Visit GetVisit(int id)

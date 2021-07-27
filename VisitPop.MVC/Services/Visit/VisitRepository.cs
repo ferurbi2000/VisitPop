@@ -10,6 +10,7 @@ using VisitPop.Application.Dtos.Employee;
 using VisitPop.Application.Dtos.Office;
 using VisitPop.Application.Dtos.RegisterControl;
 using VisitPop.Application.Dtos.Visit;
+using VisitPop.Application.Dtos.VisitPerson;
 using VisitPop.Application.Dtos.VisitState;
 using VisitPop.Application.Dtos.VisitType;
 using VisitPop.Application.Responses;
@@ -26,6 +27,7 @@ namespace VisitPop.MVC.Services.Visit
         private readonly string WebAPIUrlOffice;
         private readonly string WebAPIUrlRegisterControl;
         private readonly string WebAPIUrlVisitState;
+        private readonly string WebAPIUrlVisitPerson;
 
         private readonly Uri uri;
         private readonly Uri uriVisitType;
@@ -33,6 +35,7 @@ namespace VisitPop.MVC.Services.Visit
         private readonly Uri uriOffice;
         private readonly Uri uriRegisterControl;
         private readonly Uri uriVisitState;
+        private readonly Uri uriVisitPerson;
 
         public VisitRepository()
         {
@@ -53,8 +56,44 @@ namespace VisitPop.MVC.Services.Visit
 
             WebAPIUrlVisitState = "https://localhost:5001/api/VisitStates/";
             uriVisitState = new Uri(WebAPIUrlVisitState);
+
+            WebAPIUrlVisitPerson = "https://localhost:5001/api/VisitPersons/";
+            uriVisitPerson = new Uri(WebAPIUrlVisitPerson);
         }
 
+        public async Task<PagingResponse<VisitPersonDto>> GetVisitPersonsAsync(VisitPersonParametersDto visitPersonParameters)
+        {            
+            var queryStringParam = new Dictionary<string, string>
+            {
+                ["pageNumber"] = visitPersonParameters.PageNumber.ToString(),
+                ["pageSize"] = visitPersonParameters.PageSize.ToString(),
+                ["sortOrder"] = visitPersonParameters.SortOrder.ToString(),
+                ["filters"] = visitPersonParameters.Filters.ToString()
+            };
+
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync(QueryHelpers.AddQueryString(uriVisitPerson.ToString(), queryStringParam)))
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var content = await response.Content.ReadAsStringAsync();
+
+                        var pagingResponse = new PagingResponse<VisitPersonDto>
+                        {
+                            Items = JsonConvert.DeserializeObject<PageListVisitPersons>(content).VisitPersons,
+                            Metadata = JsonConvert.DeserializeObject<MetaData>(response.Headers.GetValues("x-pagination").First())
+                        };
+
+                        pagingResponse.Filters = visitPersonParameters.Filters;
+                        pagingResponse.SortOrder = visitPersonParameters.SortOrder;
+                        return pagingResponse;
+
+                    }
+                    return null;
+                }
+            }
+        }
 
         public async Task<PagingResponse<VisitTypeDto>> GetVisitTypesAsync(VisitTypeParametersDto visitTypeParameters)
         {
@@ -331,6 +370,6 @@ namespace VisitPop.MVC.Services.Visit
             }
         }
 
-
+        
     }
 }

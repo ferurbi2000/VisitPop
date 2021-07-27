@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using VisitPop.Application.Dtos.Employee;
+using VisitPop.Application.Dtos.VisitPerson;
 using VisitPop.Application.Dtos.VisitState;
 using VisitPop.Application.Dtos.VisitType;
 using VisitPop.Domain.Common;
@@ -43,7 +45,7 @@ namespace VisitPop.Application.Dtos.Visit
         public EmployeeDto Employee { get; set; }
         //public OfficeDto Office { get; set; }
         //public RegisterControlDto RegisterControl { get; set; }
-        public VisitStateDto VisitState { get; set; }
+        public VisitStateDto VisitState { get; set; }        
 
     }
 }

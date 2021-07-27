@@ -3,6 +3,7 @@ using VisitPop.Application.Dtos.Employee;
 using VisitPop.Application.Dtos.Office;
 using VisitPop.Application.Dtos.RegisterControl;
 using VisitPop.Application.Dtos.Visit;
+using VisitPop.Application.Dtos.VisitPerson;
 using VisitPop.Application.Dtos.VisitState;
 using VisitPop.Application.Dtos.VisitType;
 using VisitPop.MVC.Models.ViewModels.Common;
@@ -20,6 +21,8 @@ namespace VisitPop.MVC.Models.ViewModels
         public IEnumerable<RegisterControlDto> RegisterControls { get; set; }
         public IEnumerable<VisitStateDto> VisitStates { get; set; }
 
+        public IEnumerable<VisitPersonDto> VisitPersons { get; set; }
+
     }
 
     public static class VisitViewModelFactory
@@ -29,7 +32,8 @@ namespace VisitPop.MVC.Models.ViewModels
             IEnumerable<EmployeeDto> employees,
             IEnumerable<OfficeDto> offices,
             IEnumerable<RegisterControlDto> registerControls,
-            IEnumerable<VisitStateDto> visitStates)
+            IEnumerable<VisitStateDto> visitStates,
+            IEnumerable<VisitPersonDto> visitPersons)
         {
             return new VisitViewModel
             {
@@ -43,7 +47,8 @@ namespace VisitPop.MVC.Models.ViewModels
                 Employees = employees,
                 Offices = offices,
                 RegisterControls = registerControls,
-                VisitStates = visitStates
+                VisitStates = visitStates,
+                VisitPersons = visitPersons
             };
         }
 
@@ -70,7 +75,8 @@ namespace VisitPop.MVC.Models.ViewModels
             IEnumerable<EmployeeDto> employees,
             IEnumerable<OfficeDto> offices,
             IEnumerable<RegisterControlDto> registerControls,
-            IEnumerable<VisitStateDto> visitStates)
+            IEnumerable<VisitStateDto> visitStates,
+            IEnumerable<VisitPersonDto> visitPersons)
         {
             return new VisitViewModel
             {
@@ -78,12 +84,14 @@ namespace VisitPop.MVC.Models.ViewModels
                 Theme = "warning",
                 Action = "Edit",
                 ShowCreateNewAction = true,
+                ShowCreateNewDetails = true,
                 ReturnUrl = returnUrl,
                 VisitTypes = visitTypes,
                 Employees = employees,
                 Offices = offices,
                 RegisterControls = registerControls,
-                VisitStates = visitStates
+                VisitStates = visitStates,
+                VisitPersons = visitPersons
             };
         }
 
@@ -92,7 +100,8 @@ namespace VisitPop.MVC.Models.ViewModels
             IEnumerable<EmployeeDto> employees,
             IEnumerable<OfficeDto> offices,
             IEnumerable<RegisterControlDto> registerControls,
-            IEnumerable<VisitStateDto> visitStates)
+            IEnumerable<VisitStateDto> visitStates,
+            IEnumerable<VisitPersonDto> visitPersons)
         {
             return new VisitViewModel
             {
@@ -105,7 +114,8 @@ namespace VisitPop.MVC.Models.ViewModels
                 Employees = employees,
                 Offices = offices,
                 RegisterControls = registerControls,
-                VisitStates = visitStates
+                VisitStates = visitStates,
+                VisitPersons = visitPersons
             };
         }
     }

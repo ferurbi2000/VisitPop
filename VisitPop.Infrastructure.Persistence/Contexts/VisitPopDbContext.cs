@@ -36,7 +36,7 @@ namespace VisitPop.Infrastructure.Persistence.Contexts
         public DbSet<RegisterControl> RegisterControls { get; set; }
         public DbSet<Person> Persons { get; set; }
         public DbSet<Visit> Visits { get; set; }
-        public DbSet<VisitaPersona> VisitaPersonas { get; set; }
+        public DbSet<VisitPerson> VisitPersons { get; set; }
 
         #endregion
 

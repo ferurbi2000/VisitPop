@@ -9,6 +9,7 @@ namespace VisitPop.MVC.Models.ViewModels.Common
         public string Theme { get; set; } = "primary";
         public bool ShowAction { get; set; } = true;
         public bool ShowCreateNewAction { get; set; } = false;
+        public bool ShowCreateNewDetails { get; set; } = false;
         public string ReturnUrl { get; set; }
     }
 }

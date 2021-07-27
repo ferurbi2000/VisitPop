@@ -39,6 +39,9 @@ namespace VisitPop.Application.Dtos.Person
         //public PersonTypeDto PersonType { get; set; }
         //public CompanyDto Empresa { get; set; }
 
+        [Display(Name = "Full Name")]
+        public string FullName => $"{LastName}, {FirstName}";
+
         // add-on property marker - Do Not Delete This Comment
     }
 }

@@ -6,6 +6,7 @@ using VisitPop.Application.Dtos.Employee;
 using VisitPop.Application.Dtos.Office;
 using VisitPop.Application.Dtos.RegisterControl;
 using VisitPop.Application.Dtos.Visit;
+using VisitPop.Application.Dtos.VisitPerson;
 using VisitPop.Application.Dtos.VisitState;
 using VisitPop.Application.Dtos.VisitType;
 using VisitPop.MVC.Components;
@@ -24,6 +25,8 @@ namespace VisitPop.MVC.Controllers
         private IEnumerable<OfficeDto> Offices => GetOffices();
         private IEnumerable<RegisterControlDto> RegisterControls => GetRegisterControls();
         private IEnumerable<VisitStateDto> VisitStates => GetVisitStates();
+        //private IEnumerable<VisitPersonDto> VisitPersons => GetVisitPersons();
+        private IEnumerable<VisitPersonDto> VisitPersons { get; set; }
 
 
         public VisitsController(IVisitRepository visitRepo)
@@ -112,6 +115,22 @@ namespace VisitPop.MVC.Controllers
             return response.Items;
         }
 
+        private IEnumerable<VisitPersonDto> GetVisitPersons(int visitId)
+        {
+            var result = Task.Run(async () =>
+            await _visitRepo.GetVisitPersonsAsync(
+                new VisitPersonParametersDto
+                {
+                    PageSize = 1000,                    
+                    Filters = $"visitId=={visitId}",
+                    SortOrder = "FirstName"
+                })).ConfigureAwait(true);
+
+            var response = result.GetAwaiter().GetResult();
+
+            return response.Items;
+        }
+
         public async Task<IActionResult> Index(int page = 1, int pageSize = 10, string filters = "", string sortOrder = "")
         {
             ViewBag.pageSize = pageSize;
@@ -140,7 +159,7 @@ namespace VisitPop.MVC.Controllers
             if (String.IsNullOrEmpty(returnUrl))
             {
                 returnUrl = Request.Headers["Referer"].ToString();
-            }
+            }           
 
             return View("Edit", VisitViewModelFactory.Create(new VisitDto(), returnUrl,
                 VisitTypes,
@@ -160,6 +179,8 @@ namespace VisitPop.MVC.Controllers
                 visitVm.Offices = default;
                 visitVm.RegisterControls = default;
                 visitVm.VisitStates = default;
+
+                //visitVm.VisitPersons = default;
 
 
                 var newVisit = await _visitRepo.AddVisit(visitVm.Visit);
@@ -188,12 +209,15 @@ namespace VisitPop.MVC.Controllers
             var returnUrl = Request.Headers["Referer"].ToString();
 
             var visit = await _visitRepo.GetVisit(id);
+            VisitPersons = GetVisitPersons(id);
+
             VisitViewModel visitVm = VisitViewModelFactory.Details(visit, returnUrl,
                 VisitTypes,
                 Employees,
                 Offices,
                 RegisterControls,
-                VisitStates);
+                VisitStates,
+                VisitPersons);
 
             return View("Edit", visitVm);
         }
@@ -206,12 +230,15 @@ namespace VisitPop.MVC.Controllers
             }
 
             var visit = await _visitRepo.GetVisit(id);
+            VisitPersons = GetVisitPersons(id);
+                        
             VisitViewModel visitVm = VisitViewModelFactory.Edit(visit, returnUrl,
                 VisitTypes,
                 Employees,
                 Offices,
                 RegisterControls,
-                VisitStates);
+                VisitStates,
+                VisitPersons);
 
             return View("Edit", visitVm);
         }
@@ -234,12 +261,15 @@ namespace VisitPop.MVC.Controllers
                 TempData["toasterType"] = ToasterType.info;
             }
 
+            VisitPersons = GetVisitPersons(visitVM.Visit.Id);
+
             return View("Edit", VisitViewModelFactory.Edit(visitVM.Visit, visitVM.ReturnUrl,
                 VisitTypes,
                 Employees,
                 Offices,
                 RegisterControls,
-                VisitStates));
+                VisitStates,
+                VisitPersons));
         }
 
         public async Task<IActionResult> Delete(int id)
@@ -247,12 +277,15 @@ namespace VisitPop.MVC.Controllers
             var returnUrl = Request.Headers["Referer"].ToString();
 
             var visit = await _visitRepo.GetVisit(id);
+            VisitPersons = GetVisitPersons(id);
+
             VisitViewModel visitVm = VisitViewModelFactory.Delete(visit, returnUrl,
                 VisitTypes,
                 Employees,
                 Offices,
                 RegisterControls,
-                VisitStates);
+                VisitStates,
+                VisitPersons);
 
             return View("Edit", visitVm);
         }
