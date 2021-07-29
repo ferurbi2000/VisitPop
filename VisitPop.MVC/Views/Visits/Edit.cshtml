@@ -182,6 +182,8 @@
 </div>
 
 
+
+
 <div class="row">
     <div class="col-lg-8 col-xl-9">
         <div class="card shadow mb-4">
@@ -198,12 +200,53 @@
                         }
                     }
 
+                    @*<form asp-action="CreatePerson" method="get">*@
 
-                    <a asp-action="Create" class="btn btn-sm btn-primary @disabled"
-                       asp-route-returnurl="@Model.ReturnUrl">
+
+
+                    <button asp-action="CreatePerson" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                         <i class="fas fa-plus fa-lg text-white-50"></i>
                         Add a Person
-                    </a>
+                    </button>
+
+                    @*</form>*@
+
+                    
+                    @await Html.PartialAsync("_EditVisitPerson",
+                            VisitPersonViewModelFactory.Create(new VisitPersonDto()
+                            {
+                                Plate = "123",
+                                VisitId = Model.Visit.Id
+                            }))
+                   
+                    <!-- Modal -->
+                    @*<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form id="addPerson" asp-action="CreatePerson" method="post">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="staticBackdropLabel">New Person</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div>
+                                                <p>Hello</p>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-sm btn-primary">
+                                                <i class="fas fa-save fa-lg text-white-50"></i>
+                                                Create
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">
+                                                <i class="fas fa-times fa-lg text-white-50"></i>
+                                                Close
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>*@
 
                 </div>
             </div>
@@ -219,6 +262,7 @@
                                     <h5 class="mb-1">@p.Person.FullName</h5>
                                     <small>3 days ago</small>
                                 </div>
+                                <p class="mb-1">@p.Id</p>
                                 <p class="mb-1">@p.DateIn</p>
                                 <p class="mb-1">@p.DateOut</p>
                                 <p class="mb-1">@p.VehicleType.Name</p>
@@ -234,5 +278,9 @@
                 }
             </div>
         </div>
+    </div>
+
+    <div class="col-lg-4 col-xl-3">
+        <vc:edit-audit entity=@Model.Visit />
     </div>
 </div>

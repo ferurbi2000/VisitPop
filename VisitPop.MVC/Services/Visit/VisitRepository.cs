@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VisitPop.Application.Dtos.Employee;
 using VisitPop.Application.Dtos.Office;
+using VisitPop.Application.Dtos.Person;
 using VisitPop.Application.Dtos.RegisterControl;
 using VisitPop.Application.Dtos.Visit;
 using VisitPop.Application.Dtos.VisitPerson;
@@ -29,6 +30,8 @@ namespace VisitPop.MVC.Services.Visit
         private readonly string WebAPIUrlVisitState;
         private readonly string WebAPIUrlVisitPerson;
 
+        private readonly string WebAPIUrlPerson;
+
         private readonly Uri uri;
         private readonly Uri uriVisitType;
         private readonly Uri uriEmployee;
@@ -36,6 +39,10 @@ namespace VisitPop.MVC.Services.Visit
         private readonly Uri uriRegisterControl;
         private readonly Uri uriVisitState;
         private readonly Uri uriVisitPerson;
+
+        private readonly Uri uriPerson;
+
+
 
         public VisitRepository()
         {
@@ -59,6 +66,9 @@ namespace VisitPop.MVC.Services.Visit
 
             WebAPIUrlVisitPerson = "https://localhost:5001/api/VisitPersons/";
             uriVisitPerson = new Uri(WebAPIUrlVisitPerson);
+
+            WebAPIUrlPerson = "https://localhost:5001/api/Persons/";
+            uriPerson = new Uri(WebAPIUrlPerson);
         }
 
         public async Task<PagingResponse<VisitPersonDto>> GetVisitPersonsAsync(VisitPersonParametersDto visitPersonParameters)
@@ -337,6 +347,27 @@ namespace VisitPop.MVC.Services.Visit
                 }
             }
             return receivedVisit;
+        }
+
+        public async Task<PersonDto> AddPerson(PersonDto person)
+        {
+            PersonDto receivedPerson = new PersonDto();
+
+            using (var httpClient = new HttpClient())
+            {
+                StringContent content = new StringContent(JsonConvert.SerializeObject(person), Encoding.UTF8, "application/json");
+
+                using (var response = await httpClient.PostAsync(uriPerson.AbsoluteUri, content))
+                {
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        throw new Exception();
+                    }
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    receivedPerson = JsonConvert.DeserializeObject<PersonResponseDto>(apiResponse).Person;
+                }
+            }
+            return receivedPerson;
         }
 
         public async Task UpdateVisit(VisitDto visit)

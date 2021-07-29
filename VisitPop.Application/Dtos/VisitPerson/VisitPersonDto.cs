@@ -9,7 +9,8 @@ using VisitPop.Domain.Constants;
 namespace VisitPop.Application.Dtos.VisitPerson
 {
     public class VisitPersonDto: AuditableEntity
-    {
+    {        
+
         [Required(ErrorMessage = "You must select a Visit Ticket")]
         public int? VisitId { get; set; }
 

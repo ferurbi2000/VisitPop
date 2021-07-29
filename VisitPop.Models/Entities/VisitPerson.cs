@@ -11,12 +11,13 @@ namespace VisitPop.Domain.Entities
     public class VisitPerson : AuditableEntity
     {
         
-        [Sieve(CanFilter = true, CanSort = false)]
-        public int VisitId { get; set; }
-        
+                
         [Sieve(CanFilter = true, CanSort = false)]
         public int PersonId { get; set; }
-        
+
+        [Sieve(CanFilter = true, CanSort = false)]
+        public int VisitId { get; set; }
+
         [Sieve(CanFilter = true, CanSort = false)]
         public int VehicleTypeId { get; set; }
 

@@ -1,0 +1,69 @@
+﻿@model VisitPersonViewModel
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="addPerson" asp-controller="Visits" asp-action="CreatePerson" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">New Person</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 position-relative">
+                            <div class="mb-3">
+                                <label asp-for="VisitPerson.Id"></label>
+                                <input class="form-control form-control-sm" asp-for="VisitPerson.Id" readonly />
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 position-relative">
+                            <div class="mb-3">
+                                <label asp-for="VisitPerson.VisitId"></label>
+                                <input class="form-control form-control-sm" asp-for="VisitPerson.VisitId" readonly />
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col-md position-relative">
+                            <div class="mb-3">
+                                <label asp-for="VisitPerson.Plate"></label>
+                                <input class="form-control form-control-sm" asp-for="VisitPerson.Plate"/>                                
+                                <div>
+                                    <span asp-validation-for="VisitPerson.Plate" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md position-relative">
+                            <div class="mb-3">
+                                <label asp-for="VisitPerson.DateIn"></label>
+                                <input class="form-control form-control-sm" asp-for="VisitPerson.DateIn" />                                
+                                <div>
+                                    <span asp-validation-for="VisitPerson.DateIn" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-sm btn-primary">
+                        <i class="fas fa-save fa-lg text-white-50"></i>
+                        Create
+                    </button>
+                    <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times fa-lg text-white-50"></i>
+                        Close
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

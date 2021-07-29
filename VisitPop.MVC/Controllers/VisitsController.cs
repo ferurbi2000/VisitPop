@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using VisitPop.Application.Dtos.Employee;
 using VisitPop.Application.Dtos.Office;
+using VisitPop.Application.Dtos.Person;
 using VisitPop.Application.Dtos.RegisterControl;
 using VisitPop.Application.Dtos.Visit;
 using VisitPop.Application.Dtos.VisitPerson;
 using VisitPop.Application.Dtos.VisitState;
 using VisitPop.Application.Dtos.VisitType;
+using VisitPop.Application.Interfaces.Person;
 using VisitPop.MVC.Components;
 using VisitPop.MVC.Models.ViewModels;
 using VisitPop.MVC.Services.Visit;
@@ -19,6 +21,7 @@ namespace VisitPop.MVC.Controllers
     public class VisitsController : Controller
     {
         private IVisitRepository _visitRepo;
+        private IPersonRepository _personRepo;
 
         private IEnumerable<VisitTypeDto> VisitTypes => GetVisitTypes();
         private IEnumerable<EmployeeDto> Employees => GetEmployees();
@@ -167,6 +170,12 @@ namespace VisitPop.MVC.Controllers
                 Offices,
                 RegisterControls,
                 VisitStates));
+        }
+
+        public IActionResult CreatePerson()
+        {
+            //return View();
+            return PartialView("_EditVisitPerson", new VisitPersonDto());
         }
 
         [HttpPost]
